@@ -8,6 +8,7 @@
 - Python 中的变量名称称为标识符
 - 区分表达式与语句：表达式是一些东西，语句做一些事情。
 - 取模运算（求余数）的示例：
+
   ```python
   >>> time = 40
   >>> if time % 10 == 0:
@@ -38,7 +39,7 @@
   - print(object, ...)：将提供的实参打印出来，转译特殊字符，并用空格分隔，如 print("Hello world!")。  
   
   - input(prompt)：给定参数（实参），以标准输出打印，阻塞等待用户的输入，返回用户输入的字符串。    
-    
+
     ```python
     >>> input("Type one number: ")
     Type one number: 35
@@ -58,7 +59,7 @@
   - math.floor(number)：使用 math 模块中的 floor 函数将浮点数向下取整，如 `math.floor(34.5)` 返回 34。  
   
   - math.ceil(number)：使用 math 模块中的 ceil 函数将浮点数向上取整，如 `ath.ceil(36.3)` 返回 37。    
-    
+
     ```python
     import math
     math.floor(34.5)
@@ -68,12 +69,12 @@
     floor(34.5)
     # 方法2：返回 34
     ```
-    
+
     以上两种语法格式相互等同，第2种方法 `from module import function` 避免了每次调用 math 模块时的冗余，不指定模块前缀。
-    由于 Python 中处理复数的模块也用 sqrt 函数，因此，直接使用 from cmath import sqrt 方式可能和使用 from math import sqrt 中的 sqrt 函数冲突。因此，依然建议直接使用 import。    
-    
+    由于 Python 中处理复数的模块也用 sqrt 函数，因此，直接使用 from cmath import sqrt 方式可能和使用 from math import sqrt 中的 sqrt 函数冲突。因此，依然建议直接使用 import。
+
     > 注意：
-    > 
+    >
     > 1. 浮点数在 int、round 等函数中总是向下取整
     > 2. Java 是完全面向对象的语言，函数在 Java 中以方法的形式使用，因此，在 import 导入包中文件后，定义声明新对象或使用 this 引用方法。
     > 3. Python 是面向过程且支持面向对象的语言，具有内置函数库，因此，在使用函数时可直接调用函数或使用 `module.function` 调用外部模块中的函数。
@@ -127,7 +128,7 @@
   - str(object) 类：将指定的值转换为字符串。用于转换 bytes 时，可指定编码和错误处理方式。
   
   - repr(object) 函数：返回指定值的字符串表示
-    
+
     ```python
     >>> print(str("Hello,\nworld!"))
     Hello,
