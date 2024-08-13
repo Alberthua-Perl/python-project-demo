@@ -1,0 +1,1 @@
+# AI267v2.8 Course Demo for Red Hat OpenShift AI
