@@ -1,5 +1,48 @@
-## Python Project Demo
+# Python Project Demo
 
-- 🐍 Learning Python and project demo 😎🤘
-
+- 🐍 Python 学习与项目 Demo 😎🤘
 - 🧪 实验源码与记录位于 *develop* 分支中，可切换分支查看。
+- 学习 `机器学习（Machine Learning, ML）` 和 `神经网络（Deep Learning, DL）` 的最低配置取决于你的目标是 `理论学习` 还是 `实战训练模型`。以下是详细配置建议：
+  - 🎯 1. 理论学习 + 轻量级实践
+    - ✅ 目标： 学习概念、实现基础算法、跑简单模型（如线性回归、决策树、KNN 等），使用小型数据集。
+    - 💻 最低配置：
+      - CPU：双核或四核 CPU（如 Intel i5-8代 / AMD Ryzen 3+）
+      - 内存：8 GB RAM（最低），16 GB 更佳
+      - 存储：256 GB SSD（最低），有 Python 环境、Jupyter Notebook 即可
+      - GPU：不需要 GPU，可使用 CPU 训练
+    - 📚 适合工具：
+      - Python、NumPy、Pandas、Scikit-learn
+      - TensorFlow / PyTorch（CPU 版本）
+  - ⚡ 2. 训练简单神经网络
+    - ✅ 目标： 实现简单的 CNN/RNN 模型，训练小型数据集（如 MNIST、CIFAR-10）
+    - 💻 最低配置：
+      - CPU：四核及以上（Intel i5-10代 / Ryzen 5 以上）
+      - 内存：16 GB RAM（建议）
+      - 存储：512 GB SSD（提升 I/O 速度）
+      - GPU：最低 NVIDIA GTX 1650（4GB VRAM），建议 RTX 3050 / 3060（8GB VRAM）
+    - 📚 适合工具：
+      - TensorFlow / PyTorch（GPU 版本）
+      - Google Colab（免费 GPU 资源）
+  - 🚀 3. 深度学习 + 训练大规模神经网络
+    - ✅ 目标： 训练复杂模型（如 ResNet、BERT、GPT），处理大型数据集
+    - 💻 最低配置：
+      - CPU：8 核或以上（Intel i7 / Ryzen 7 以上）
+      - 内存：32 GB RAM（最低），64 GB RAM 更佳
+      - 存储：1 TB NVMe SSD（数据加载更快）
+      - GPU：最低 NVIDIA RTX 3060（12 GB VRAM），建议 RTX 4080 / 4090（24 GB VRAM）
+    - 📚 适合工具：
+      - TensorFlow / PyTorch
+      - Docker + CUDA 环境
+      - Kubernetes（用于分布式训练）
+  - ☁ 4. 云端训练（推荐替代方案）
+    - ✅ 目标： 预算不足或配置不够时，使用云 GPU 训练
+    - 🌐 云服务：
+      - Google Colab（免费 / Pro，T4 / A100 GPU）
+      - AWS EC2 + GPU 实例
+      - Azure / GCP（提供多种 GPU 选择）
+  - 🛑 最低能跑神经网络的配置总结
+    - ✅ CPU： i5-8代 / Ryzen 5 及以上
+    - ✅ 内存： 8 GB RAM（基本），16 GB RAM（推荐）
+    - ✅ 存储： 256 GB SSD（最低），512 GB 更好
+    - ❗ GPU： GTX 1650（入门），RTX 3060 / 4060（推荐）
+  - ⚡ 如果预算有限，可以 用 Colab 免费 GPU 来跑深度学习模型！
