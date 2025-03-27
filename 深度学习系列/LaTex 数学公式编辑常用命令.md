@@ -3,26 +3,26 @@
 ## **文档目录**
 
 - 0.前言
-- 1.LaTeX基本语法
-- 2.上标和下标
+- 1. LaTeX基本语法
+- 2. 上标和下标
   - 侧上方和侧下方
   - 正上方和正下方
-- 3.Latex花体字体
+- 3. Latex花体字体
   - 标准的Latex花体字体
   - Euler花体
   - Ralph Smith正式花体（rsfs）
   - 其他花体使用汇总
   - 在Jupyter Notebook中
-- 4.常见数学表达式
+- 4. 常见数学表达式
   - 分式
   - 根号
   - 极限
   - 微分与导数
   - 积分
   - 矩阵
-- 5.常见数学运算符号
-- 6.公式换行与对齐
-- 7.其它
+- 5. 常见数学运算符号
+- 6. 公式换行与对齐
+- 7. 其它
   - 无穷大 
   - 波浪线
   - 箭头
@@ -31,9 +31,9 @@
   - 希腊字母
   - 数学公式中的空格
   - 各种 “帽子”
-- 8.参考链接 
+- 8. 参考链接 
 
-## **0.前言**
+## **0. 前言**
 
 本文主要介绍在 `LaTeX` 中如何运用各种技巧编辑数学公式，包括上标、下标、花体字体、分式、微分、积分、多行公式对齐、编号控制及特殊符号等。所有的编辑均在 `Jupyter Notebook` 中验证实现，部分的 LaTex 语法可能和其他编辑器存在差异。
 
@@ -41,7 +41,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 
 以下输入 LaTeX 示例中，前面是在公式编辑器中输入的字符串，后面是相应的转换效果（事实上就是本编辑器中的公式编辑器的变换效果）。
 
-## **1.LaTeX基本语法**
+## **1. LaTeX基本语法**
 
 **LaTeX 中用美元符号 `$` 来将数学公式与其它文字分隔开来。** 比如说，在有 LaTeX 解释的环境下，如 `Jupyter Notebook Markdown cell` 中输入 $F = ma$，将得到牛顿第二定律的数学表达式。如果用两个美元符号 `$$` 作为两侧定界符的话就可以得到独立表示成一行的数学公式，而且会自动放置在一行的中央。
 
@@ -49,7 +49,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 
 换行符为 `\\`，这个在后面的多行公式编辑中将出现。
 
-## **2.上标与下标**
+## **2. 上标与下标**
 
 ### 侧上方和侧下方
 
@@ -77,7 +77,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 - 👉 $\sum\limits_{n=1}\limits^{+\infty}\frac{1}{n^2} = \frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \cdots + \frac{1}{n^2} = \frac{\pi^2}{6}$
 - 👉 $\prod\limits_{i=1}\limits^{n} i = n!$
 
-## **3.LaTeX花体字体**
+## **3. LaTeX花体字体**
 
 多数 LaTeX 标准发行版中提供了三种“花色”的字体，其中一些字体需要使用特殊的宏程序包。为此，请在 \documentclass 命令之后和 \begin{document} 之前插入 \usepackage 命令添加宏包。
 
@@ -114,7 +114,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 - \mathcal{T} $\Rightarrow$ $\mathcal{T}$，\cal{T} $\Rightarrow$ $\cal{T}$
 - \mathscr{T} $\Rightarrow$ $\mathscr{T}$，\scr{T} $\Rightarrow$ $\scr{T}$
 
-## **4.常见的数学表达式**
+## **4. 常见的数学表达式**
 
 ### 分式
 
@@ -141,7 +141,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 
 ### 矩阵
 
-## **5.常见数学运算符号**
+## **5. 常见数学运算符号**
 
 | 名称    | 显示    | 符号    | 功能    |
 |:-----   |:-----    |:-----    |:-----    |
@@ -163,7 +163,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 | 二重积分    | $\iint$    | \iint    | 二重积分运算    |
 | 三重积分    | $\iiint$    | \iiint    | 三重积分运算    | 
 
-## **6.公式换行与对齐**
+## **6. 公式换行与对齐**
 
 - 用 `\\` 可以使得公式自动换行，可以把 `\\` 理解为C语言中的 `\n` 的等价物。
 - 公式单行输出：$(a-b)^2 = a^2 - 2ab + b^2 = (a+b)^2 - 4ab$
@@ -185,7 +185,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 - `\begin{align} 与 \end{align}` 对公式行进行编号，可使用 `\begin{align*} 与 \end{align*}` 取消编号。
 - 也可在 `\\` 之前使用 \notag 取消本行编号，如 `a + b =5 \notag \\`。
 
-## **7.其他**
+## **7. 其他**
 
 ### 无穷大
 
@@ -248,7 +248,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 | \overleftarrow    | $\overleftarrow{A}, \overleftarrow{x}, \overleftarrow{y}, \overleftarrow{a}, \overleftarrow{b}$    |
 | \overrightarrow    | $\overrightarrow{A}, \overrightarrow{x}, \overrightarrow{y}, \overrightarrow{a}, \overrightarrow{b}$    |
 
-## **参考链接**
+## **8. 参考链接**
 
 - [LaTex 学习笔记 ———— LaTeX 公式换行](https://blog.csdn.net/weixin_33744854/article/details/86403457)
 - [JupyterLab 使用指南 (七): JupyterLab 使用 LaTeX 生成数学公式](https://blog.csdn.net/imdeity/article/details/139751193)
