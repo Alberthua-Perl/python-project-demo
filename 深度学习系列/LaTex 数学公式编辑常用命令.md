@@ -253,5 +253,6 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 - [LaTex 学习笔记 ———— LaTeX 公式换行](https://blog.csdn.net/weixin_33744854/article/details/86403457)
 - [JupyterLab 使用指南 (七): JupyterLab 使用 LaTeX 生成数学公式](https://blog.csdn.net/imdeity/article/details/139751193)
 - [【推荐】LaTex 公式编辑器：告别笨拙的单纯打字符方式](https://www.bilibili.com/opus/730872231290208289)
+- [LaTeX 数学符号汇总](https://github.com/Alberthua-Perl/python-project-demo/blob/develop/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97/images/LaTex/latex-mathematical-symbols.pdf)
 - [【在线工具】LaTex 公式编辑器v1.8.2](https://www.latexlive.com/)
 - [CodeCogs LaTeX 在线 API 使用简介](https://www.cnblogs.com/uxod/p/17046563.html)
