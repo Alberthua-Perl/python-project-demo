@@ -35,7 +35,7 @@
 
 ## **0. 前言**
 
-本文主要介绍在 `LaTeX` 中如何运用各种技巧编辑数学公式，包括上标、下标、花体字体、分式、微分、积分、多行公式对齐、编号控制及特殊符号等。所有的编辑均在 `Jupyter Notebook` 中验证实现，部分的 LaTex 语法可能和其他编辑器存在差异。
+本文主要介绍在 `LaTeX` 中如何运用各种技巧编辑数学公式，包括上标、下标、花体字体、分式、微分、积分、多行公式对齐、编号控制及特殊符号等。所有的编辑均在 `Jupyter Notebook` 中验证实现，其他环境的的 LaTeX 语法可能存在差异。
 
 LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围中一小部分。但是本文将仅限于公式编辑中如何使用 LaTeX 来提高效率。比如说在 Word 的公式编辑器中，不用LaTeX 也可以编辑公式，但是需要频繁地使用鼠标，比较麻烦。善用 LaTeX 的话就可以大大提高效率。
 
@@ -253,6 +253,6 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 - [LaTex 学习笔记 ———— LaTeX 公式换行](https://blog.csdn.net/weixin_33744854/article/details/86403457)
 - [JupyterLab 使用指南 (七): JupyterLab 使用 LaTeX 生成数学公式](https://blog.csdn.net/imdeity/article/details/139751193)
 - [【推荐】LaTex 公式编辑器：告别笨拙的单纯打字符方式](https://www.bilibili.com/opus/730872231290208289)
-- [LaTeX 数学符号汇总](https://github.com/Alberthua-Perl/python-project-demo/blob/develop/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97/images/LaTex/latex-mathematical-symbols.pdf)
+- [【精华】LaTeX 数学符号汇总](https://github.com/Alberthua-Perl/python-project-demo/blob/develop/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97/images/LaTex/latex-mathematical-symbols.pdf)
 - [【在线工具】LaTex 公式编辑器v1.8.2](https://www.latexlive.com/)
 - [CodeCogs LaTeX 在线 API 使用简介](https://www.cnblogs.com/uxod/p/17046563.html)
