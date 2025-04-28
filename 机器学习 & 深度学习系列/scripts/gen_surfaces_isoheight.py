@@ -1,3 +1,7 @@
+"""
+绘制二元函数 f(x,y) = x**2 + y**2 的图像（凸函数图像）与等高线，
+而 f(x,y) = x**2 - y**2 图像为马鞍面。
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D

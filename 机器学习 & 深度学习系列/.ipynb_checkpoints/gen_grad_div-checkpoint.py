@@ -1,3 +1,6 @@
+"""
+绘制二元函数 f(x,y) = x**2 - y**2 的梯度与散度
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 
