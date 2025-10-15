@@ -1,6 +1,7 @@
-"""
+'''
 绘制二元函数与切平面之间的切点
-"""
+'''
+
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
