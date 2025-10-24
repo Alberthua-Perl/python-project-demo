@@ -106,7 +106,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 
 ### 3.4 其他花体使用汇总
 
-![latex-math-alphabets](images/LaTex/latex-math-alphabets.png)
+![latex-math-alphabets](images/latex-math-alphabets.png)
 
 ### 3.5 在 Jupyter Notebook 中的显示
 
@@ -224,7 +224,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 
 ### 7.3 箭头
 
-![latex-arrow](images/LaTex/latex-arrow.jpg)
+![latex-arrow](images/latex-arrow.jpg)
 
 ### 7.4 粗体字母
 
@@ -248,7 +248,7 @@ LaTeX 可以用来编辑完整的文档，公式编辑只是它的能力范围�
 
 ### 7.6 希腊字母
 
-![greek_letter_latex](images/LaTex/greek_letter_latex.jpg)
+![greek_letter_latex](images/greek_letter_latex.jpg)
 
 ### 7.7 数学公式中的空格
 
