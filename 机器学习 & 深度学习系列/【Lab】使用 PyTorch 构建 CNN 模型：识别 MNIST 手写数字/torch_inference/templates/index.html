@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten Digit Recognition</title>
+    <style>
+        body {
+            display: flex;  /* Flexbox 布局 */
+			 //display: grid;  /* Grid 布局 */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+			 justify-content: flex-start; /* 确保内容从顶部开始 */
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;  /* 设置背景颜色为黑色 */
+            color: white;  /* 设置文字颜色为白色 */
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }		
+        #canvas {
+            //border: 2px solid black;
+            border: 2px solid #1E90EF;  /* 浅蓝色代号 */
+			 margin-bottom: 10px;  /* 调整按钮与画布之间的间距 */
+        }
+        #button-container {
+            display: flex;
+            gap: 10px;  /* 控制按钮之间的间距 */
+        }
+        button {  /* 调整按钮样式 */
+            padding: 10px;
+            font-size: 16px;
+            color: black;
+            background-color: #D6EAFD8;
+            border: 2px solid #D6EAFD8;
+        }		
+        #result {
+            margin-top: 5px;
+        }
+        /* 调整 h1 和 h2 的外边距 */
+        h1, h2 {
+            margin: 0;  /* 去除外边距 */
+        }
+    </style>
+</head>
+<body>
+    <div id='container'>
+        <h1>CNN Demo：Handwritten Digit Recognition</h1>
+        <h2>Please draw 0~9 number in following box</h2>
+        <canvas id="canvas" width="280" height="280"></canvas>
+        <div id='button-container'>
+            <button id="clear">Clear</button>
+            <button id="submit">Submit</button>
+        </div>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const clearButton = document.getElementById('clear');
+        const submitButton = document.getElementById('submit');
+        const result = document.getElementById('result');
+
+        // 设置画布背景颜色为黑色
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // 设置手写线条粗细，以更好地识别数字。
+        ctx.lineWidth = 10;
+		// 设置手写线条颜色
+		ctx.strokeStyle = 'gray';
+
+        let drawing = false;
+		
+        canvas.addEventListener('mousedown', (e) => {
+            drawing = true;
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (drawing) {
+                ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+                ctx.stroke();
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            drawing = false;
+        });
+
+        clearButton.addEventListener('click', () => {
+		    // 设置在点击 Clear 按钮后背景颜色依然为黑色
+		    ctx.fillStyle = 'black';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        submitButton.addEventListener('click', () => {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const dataURL = canvas.toDataURL('image/png');
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ image: dataURL })
+            })
+            .then(response => response.json())
+            .then(data => {
+                //result.textContent = `Predicted Digit: ${data.prediction}`;
+				result.textContent = `Predicted Digit: ${data.prediction}`;
+            });
+        });
+    </script>
+</body>
+</html>
