@@ -3,7 +3,7 @@
 
  - 安装 torch（集成 CUDA）：
    $ pip install torch torchvision torchaudio \
-     torchmetrics rich tqdm \
+     torchmetrics tqdm rich \
      torchinfo \
      --index-url https://download.pytorch.org/whl/cu124
 
@@ -31,7 +31,7 @@ dll_path = next(
 )
 print(' cudnn64_8.dll path :', dll_path)
 # 重要说明：
-#  cudnn64_8 链接在 torch 中已通过静态链接的方式编译进入此包，torch 不依赖系统级
+#  cudnn64_8 链接在 torch 中已通过静态链接的方式编译进入 torch，torch 不依赖系统级
 #  cudnn64_8.dll。若系统中不存在此链接，torch 调用 CUDA 也不会报错。因此，以上 print()
 #  函数返回 None。
 
@@ -44,6 +44,7 @@ print(y)
 """
 测试 TensorFlow 与 CUDA 集成
 """
+
 import tensorflow as tf
 
 print('\n>>> Get TensorFlow CUDA is or not supported...')
