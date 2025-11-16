@@ -2,7 +2,7 @@
 
 ## LightSpeed 推理环境概要
 
-根据 Red Hat<sup><a href="#ref-1" id="cite-1" >[1]</a></sup> 文档中的说明
+根据 [Red Hat 文档](https://docs.redhat.com/zh-cn/documentation/red_hat_enterprise_linux/10/html/interacting_with_the_command-line_assistant_powered_by_rhel_lightspeed/index)[<sup>[1]</sup>](#introduce) 中的说明，
 
 ## **拉取安装所需容器镜像**
 
@@ -23,6 +23,8 @@ Storing signatures
 ```
 
 ## **启动 installer-rhel10 容器**
+
+[installer-rhel10 容器镜像](https://catalog.redhat.com/en/software/containers/rhel-cla/installer-rhel10/68af1cbe4a00895806fa0b48#get-this-image)[<sup>[2]</sup>](#installer-rhel10) 用于拉取其他所需容器的 **安装程序** 容器，安装 `rhel-lightspeed` 命令，并选择性地创建 `systemd` 服务。
 
 ```bash
 $ mkdir $HOME/.local/bin  # 创建容器映射目录
@@ -73,7 +75,7 @@ $ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
   - registry.redhat.io/rhel-cla/rlsapi-rhel10:latest
 
 ```bash
-$ rhel-cla start  # 此步根据具体的硬件与网络环境可能消耗时间不同
+$ rhel-cla start  # 此步根据具体的硬件与网络环境可能消耗时间不同，笔者的环境中大约需要 16~18min 使所有的容器就绪（ready）。
 ℹ️  Starting RHEL CLA...
 ℹ️  Systemd service detected, starting service
 ✅ RHEL CLA systemd service started
@@ -82,10 +84,13 @@ $ rhel-cla start  # 此步根据具体的硬件与网络环境可能消耗时间
 
 ## **参考链接**
 
-<div id="ref-1">
-[1] <a ref="https://docs.redhat.com/zh-cn/documentation/red_hat_enterprise_linux/10/html/interacting_with_the_command-line_assistant_powered_by_rhel_lightspeed/index" target="_blank">与 RHEL Lightspeed 支持的命令行助手进行交互 | Red Hat Documentation</a>
-</div>
-- [Red Hat Enterprise Linux (RHEL) command line assistant installer | Red Hat Ecosystem Catalog](https://catalog.redhat.com/en/software/containers/rhel-cla/installer-rhel10/68af1cbe4a00895806fa0b48#get-this-image)
+<div id="introduce"></div>
+
+[1] [与 RHEL Lightspeed 支持的命令行助手进行交互 | Red Hat Documentation](https://docs.redhat.com/zh-cn/documentation/red_hat_enterprise_linux/10/html/interacting_with_the_command-line_assistant_powered_by_rhel_lightspeed/index)
+
+<div id="installer-rhel10"></div>
+
+[2] [Red Hat Enterprise Linux (RHEL) command line assistant installer | Red Hat Ecosystem Catalog](https://catalog.redhat.com/en/software/containers/rhel-cla/installer-rhel10/68af1cbe4a00895806fa0b48#get-this-image)
 
 
 
