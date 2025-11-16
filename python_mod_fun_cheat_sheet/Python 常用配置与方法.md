@@ -2,24 +2,24 @@
 
 ## **文档目录**
 
-- [🐍 Python 常用配置方法](#-python-常用配置方法)
-  - [文档目录](#文档目录)
-  - [1. Python 学习快速入门](#1-python-学习快速入门)
-  - [2. Python 正则表达式汇总](#2-python-正则表达式汇总)
-  - [3. 查看 Python 内置函数使用说明](#3-查看-python-内置函数使用说明)
-  - [4. Python3 模块管理工具：pip3](#4-python3-模块管理工具pip3)
-    - [4.1 安装 pip3 模块管理工具（该软件包无依赖的软件包）](#41-安装-pip3-模块管理工具该软件包无依赖的软件包)
-    - [4.2 pip3 搜索 Python 模块](#42-pip3-搜索-python-模块)
-      - [4.2.1 pip3 search 搜索方式](#421-pip3-search-搜索方式)
-      - [4.2.2 推荐搜索方式](#422-推荐搜索方式)
-    - [4.3 安装 Python 模块](#43-安装-python-模块)
-      - [4.3.1 pip3 安装指定的 Python 模块](#431-pip3-安装指定的-python-模块)
-      - [4.3.2 使用模块源代码安装](#432-使用模块源代码安装)
-    - [4.4 升级 pip3](#44-升级-pip3)
-  - [5. 配置 pip3 模块安装源](#5-配置-pip3-模块安装源)
-    - [5.1 代码替换](#51-代码替换)
-    - [5.2 手动替换](#52-手动替换)
-  - [6. 参考链接](#6-参考链接)
+- [🐍 **Python 常用配置方法**](#-python-常用配置方法)
+  - [**文档目录**](#文档目录)
+  - [**1. Python 学习快速入门**](#1-python-学习快速入门)
+  - [**2. Python 正则表达式汇总**](#2-python-正则表达式汇总)
+  - [**3. 查看 Python 内置函数使用说明**](#3-查看-python-内置函数使用说明)
+  - [**4. Python3 模块管理工具：pip3**](#4-python3-模块管理工具pip3)
+    - [**4.1 安装 pip3 模块管理工具（该软件包无依赖的软件包）**](#41-安装-pip3-模块管理工具该软件包无依赖的软件包)
+    - [**4.2 pip3 搜索 Python 模块**](#42-pip3-搜索-python-模块)
+      - [**4.2.1 pip3 search 搜索方式**](#421-pip3-search-搜索方式)
+      - [**4.2.2 推荐搜索方式**](#422-推荐搜索方式)
+    - [**4.3 安装 Python 模块**](#43-安装-python-模块)
+      - [**4.3.1 pip3 安装指定的 Python 模块**](#431-pip3-安装指定的-python-模块)
+      - [**4.3.2 使用模块源代码安装**](#432-使用模块源代码安装)
+    - [**4.4 升级 pip3**](#44-升级-pip3)
+  - [**5. 配置 pip3 模块安装源**](#5-配置-pip3-模块安装源)
+    - [**5.1 代码替换**](#51-代码替换)
+    - [**5.2 手动替换**](#52-手动替换)
+  - [**6. 参考链接**](#6-参考链接)
 
 ## **1. Python 学习快速入门**
 
@@ -84,6 +84,23 @@ $ pip3 install docker-py
 
 $ pip3 install uncompyle
 # 安装 Python 反编译模块 uncompyle
+```
+
+常用安装格式：
+
+```bash
+$ pip3 install [-i|--index-url] https://pypi.tuna.tsinghua.edu.cn/simple <package_name>  # 清华源
+$ pip3 install [-i|--index-url] https://mirrors.aliyun.com/pypi/simple <package_name>    # 阿里云
+$ pip3 install [-i|--index-url] https://pypi.mirrors.ustc.edu.cn/simple <package_name>   # 中国科技大学
+```
+
+若源使用 HTTP 或证书校验失败，可再加 `--trusted-host` 主机名：
+
+```bash
+$ pip3 install \
+  --index-url https://mirrors.aliyun.com/pypi/simple \
+  --trusted-host mirrors.aliyun.com \
+  <package_name>         
 ```
 
 <center><img src="images/pip-install-uncompyle-module.jpg" style="width:80%"></center>
