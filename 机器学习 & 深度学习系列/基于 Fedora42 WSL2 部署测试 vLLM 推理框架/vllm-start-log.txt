@@ -1,0 +1,81 @@
+INFO 11-18 14:10:05 [__init__.py:216] Automatically detected platform cuda.
+(APIServer pid=466) INFO 11-18 14:10:09 [api_server.py:1839] vLLM API server version 0.11.0
+(APIServer pid=466) INFO 11-18 14:10:09 [utils.py:233] non-default args: {'model_tag': './granite-3.2-8b-instruct-bnb-4bit', 'host': '0.0.0.0', 'model': './granite-3.2-8b-instruct-bnb-4bit', 'max_model_len': 2048, 'quantization': 'bitsandbytes', 'load_format': 'bitsandbytes', 'gpu_memory_utilization': 0.8}
+(APIServer pid=466) INFO 11-18 14:10:09 [model.py:547] Resolved architecture: GraniteForCausalLM
+(APIServer pid=466) `torch_dtype` is deprecated! Use `dtype` instead!
+(APIServer pid=466) INFO 11-18 14:10:09 [model.py:1510] Using max model len 2048
+(APIServer pid=466) INFO 11-18 14:10:09 [scheduler.py:205] Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO 11-18 14:10:12 [__init__.py:216] Automatically detected platform cuda.
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:15 [core.py:644] Waiting for init message from front-end.
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:15 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='./granite-3.2-8b-instruct-bnb-4bit', speculative_config=None, tokenizer='./granite-3.2-8b-instruct-bnb-4bit', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=bitsandbytes, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=bitsandbytes, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=./granite-3.2-8b-instruct-bnb-4bit, enable_prefix_caching=True, chunked_prefill_enabled=True, pooler_config=None, compilation_config={"level":3,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output","vllm.mamba_mixer2","vllm.mamba_mixer","vllm.short_conv","vllm.linear_attention","vllm.plamo2_mamba_mixer","vllm.gdn_attention","vllm.sparse_attn_indexer"],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":[2,1],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":512,"local_cache_dir":null}
+(EngineCore_DP0 pid=491) WARNING 11-18 14:10:16 [interface.py:381] Using 'pin_memory=False' as WSL is detected. This may slow down the performance.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:18 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+(EngineCore_DP0 pid=491) WARNING 11-18 14:10:18 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:18 [gpu_model_runner.py:2602] Starting to load model ./granite-3.2-8b-instruct-bnb-4bit...
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:19 [gpu_model_runner.py:2634] Loading model from scratch...
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:19 [cuda.py:366] Using Flash Attention backend on V1 engine.
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:20 [bitsandbytes_loader.py:759] Loading weights with BitsAndBytes quantization. May take a while ...
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  2.88it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  2.88it/s]
+(EngineCore_DP0 pid=491)
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:03<00:00,  3.33s/it]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:03<00:00,  3.33s/it]
+(EngineCore_DP0 pid=491)
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:24 [gpu_model_runner.py:2653] Model loading took 4.6210 GiB and 4.635825 seconds
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:31 [backends.py:548] Using cache directory: /home/alberthua/.cache/vllm/torch_compile_cache/c64d5a755b/rank_0_0/backbone for vLLM's torch.compile
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:31 [backends.py:559] Dynamo bytecode transform time: 6.79 s
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:34 [backends.py:164] Directly load the compiled graph(s) for dynamic shape from the cache, took 2.035 s
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:36 [monitor.py:34] torch.compile takes 6.79 s in total
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:38 [gpu_worker.py:298] Available KV cache memory: 1.27 GiB
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:38 [kv_cache_utils.py:1087] GPU KV cache size: 8,320 tokens
+(EngineCore_DP0 pid=491) INFO 11-18 14:10:38 [kv_cache_utils.py:1091] Maximum concurrency for 2,048 tokens per request: 4.06x
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████████████████████| 67/67 [00:25<00:00,  2.58it/s]
+Capturing CUDA graphs (decode, FULL): 100%|█████████████████████████████████████████████| 35/35 [00:11<00:00,  3.07it/s]
+(EngineCore_DP0 pid=491) INFO 11-18 14:11:16 [gpu_model_runner.py:3480] Graph capturing finished in 38 secs, took 0.87 GiB
+(EngineCore_DP0 pid=491) INFO 11-18 14:11:17 [core.py:210] init engine (profile, create kv cache, warmup model) took 52.76 seconds
+(APIServer pid=466) INFO 11-18 14:11:17 [loggers.py:147] Engine 000: vllm cache_config_info with initialization after num_gpu_blocks is: 520
+(APIServer pid=466) INFO 11-18 14:11:17 [api_server.py:1634] Supported_tasks: ['generate']
+(APIServer pid=466) INFO 11-18 14:11:17 [api_server.py:1912] Starting vLLM API server 0 on http://0.0.0.0:8000
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:34] Available routes are:
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /openapi.json, Methods: HEAD, GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /docs, Methods: HEAD, GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /docs/oauth2-redirect, Methods: HEAD, GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /redoc, Methods: HEAD, GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /health, Methods: GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /load, Methods: GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /ping, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /ping, Methods: GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /tokenize, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /detokenize, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/models, Methods: GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /version, Methods: GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/responses, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/responses/{response_id}, Methods: GET
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/responses/{response_id}/cancel, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/chat/completions, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/completions, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/embeddings, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /pooling, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /classify, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /score, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/score, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/audio/transcriptions, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/audio/translations, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /rerank, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v1/rerank, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /v2/rerank, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /scale_elastic_ep, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /is_scaling_elastic_ep, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /invocations, Methods: POST
+(APIServer pid=466) INFO 11-18 14:11:17 [launcher.py:42] Route: /metrics, Methods: GET
+(APIServer pid=466) INFO:     Started server process [466]
+(APIServer pid=466) INFO:     Waiting for application startup.
+(APIServer pid=466) INFO:     Application startup complete.
