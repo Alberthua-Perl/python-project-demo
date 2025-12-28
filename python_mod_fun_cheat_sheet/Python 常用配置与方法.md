@@ -89,9 +89,9 @@ $ pip3 install uncompyle
 常用安装格式：
 
 ```bash
-$ pip3 install [-i|--index-url] https://pypi.tuna.tsinghua.edu.cn/simple <package_name>  # 清华源
-$ pip3 install [-i|--index-url] https://mirrors.aliyun.com/pypi/simple <package_name>    # 阿里云
-$ pip3 install [-i|--index-url] https://pypi.mirrors.ustc.edu.cn/simple <package_name>   # 中国科技大学
+$ pip3 install [-i|--index-url] https://pypi.tuna.tsinghua.edu.cn/simple <module_name>  # 清华源
+$ pip3 install [-i|--index-url] https://mirrors.aliyun.com/pypi/simple <module_name>    # 阿里云
+$ pip3 install [-i|--index-url] https://pypi.mirrors.ustc.edu.cn/simple <module_name>   # 中国科技大学
 ```
 
 若源使用 HTTP 或证书校验失败，可再加 `--trusted-host` 主机名：
@@ -100,10 +100,23 @@ $ pip3 install [-i|--index-url] https://pypi.mirrors.ustc.edu.cn/simple <package
 $ pip3 install \
   --index-url https://mirrors.aliyun.com/pypi/simple \
   --trusted-host mirrors.aliyun.com \
-  <package_name>         
+  <module_name>         
 ```
 
 <center><img src="images/pip-install-uncompyle-module.jpg" style="width:80%"></center>
+
+使用 requirements.txt 文件管理 Python 模块：
+
+```bash
+$ pip3 freeze > ./requirements-installed.txt
+# 导出已安装的 Python 模块至指定文件中
+
+$ vim ./requirements-dev.txt
+  typing==3.7.4.3
+$ pip install -r ./requirements-dev.txt
+# 创建 requirements.txt 文件安装或升级 Python 模块
+# 注意：requirements.txt 文件名可根据实际情况进行修改，满足不同环境的需求，如 requirements-dev.txt 可用于开发环境，requirements-prod.txt 可用于生产环境。
+```
 
 #### **4.3.2 使用模块源代码安装**
 
@@ -155,7 +168,9 @@ EOF
 $ pip3 -v config list
 ```
 
-## **6. 参考链接**
+## **6. 常用模块**
+
+## **7. 参考链接**
 
 - [Python 官网](https://www.python.org/)
 - [Python Releases for Windows](https://www.python.org/downloads/windows/)
