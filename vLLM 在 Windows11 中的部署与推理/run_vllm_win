@@ -1,0 +1,151 @@
+#!/bin/bash
+#
+# 功能：Win11 环境中部署运行 vLLM 推理服务器
+# 创建日期：2026-01-06
+# 
+# 环境所需软硬件要求：
+#   - Python: 3.12.10
+#   - GPU: NVIDIA RTX 2000 Ada Generation Laptop GPU
+#   - CUDA Toolkit: >=11.6
+#   - torch: 2.7.1+cu126
+#
+# 使用方法：
+#   - 由于 CMD/PowerShell 无法兼容 Bash，因此在 Win11 中安装并打开 Git-Bash 再运行此脚本。
+#   - $ sh ./run_vllm_win [OPTIONS]
+
+function __source_env {
+	cd $HOME/vllm/
+	source $HOME/vllm/.venv/Scripts/activate
+	[[ -d models/ ]] || mkdir models/
+}
+
+function __install_vllm {
+	[[ -d $HOME/vllm/ ]] || mkdir $HOME/vllm/
+	cd $HOME/vllm/
+	python -m venv .venv  #创建 vllm 的虚拟运行环境
+	source $HOME/vllm/.venv/Scripts/activate
+
+	pip install torch==2.7.1+cu126 torchaudio==2.7.1+cu126 torchvision==0.22.1+cu126 \
+		--index-url https://download.pytorch.org/whl/cu126
+	pip install vllm-0.10.2+cu124-cp312-cp312-win_amd64.whl
+	#兼容 windows 的 vllm whl 下载地址：https://github.com/SystemPanic/vllm-windows/releases
+	python -m pip install --upgrade pip
+	vllm --version  #确认 vllm 版本
+}
+
+function __mc_download {
+	__source_env
+	###ModelScope 模型社区 (魔搭社区 https://www.modelscope.cn/home):
+	pip install modelscope  #install download tool
+	python -c "from modelscope import snapshot_download; model_dir = snapshot_download('Qwen/Qwen3-4B-Instruct-2507-FP8', cache_dir='./models')"
+	#已测试模型列表：
+	# - Qwen/Qwen3-4B-Instruct-2507-FP8
+	# - Qwen/Qwen3-0.6B
+}
+
+function __hf_download {
+	__source_env
+	printf "\n!!! 请确认已具有 Hugging Face 认证 Token !!!\n\n"
+	read -p "输入 Hugging Face token: " HUGGINGFACE_TOKEN
+	export $HUGGINGFACE_TOKEN
+	read -p "请输入模型名称路径：" MODEL_PATH
+	###Hugging Face 模型社区 (https://huggingface.co/):
+	hf auth login --token $HUGGINGFACE_TOKEN
+	hf download $MODEL_PATH --local-dir ./models/$MODEL_PATH
+	#已测试模型列表：
+	# - Qwen/Qwen3-4B-Instruct-2507
+}
+
+function __run_vllm {
+	__source_env
+	cd $HOME/vllm/models/
+	#pip install bitsandbytes>=0.46.1
+	
+	#注意：运行不同的模型加载的选项可能存在差异而导致模型加载或请求失败
+	vllm serve Qwen/Qwen3-4B-Instruct-2507 \
+		--max-model-len 5000 \
+		--quantization bitsandbytes \
+		--gpu-memory-utilization 0.80 \
+		--dtype float16 \
+		--generation-config vllm \
+		--uvicorn-log-level debug \
+		--host 0.0.0.0 \
+		--port 8000
+	
+	#选项说明：
+	#
+	# --max-model-len 5000:
+	# 	指定模型接收用户输入与模型输出最大 token 数量，该值由 GPU 硬件与推理框架计算获得，
+	#   因此该值可手动指定。如果设置超出可支持的上限，那么模型输出可被截断或报错。
+	#   与 "模型上下文窗口" 相区别。
+	#
+	# --gpu-memory-utilization 0.80: 
+	# 	GPU 显存占用上限 80% (留 20% 余量，防 OOM)
+	#
+	# --dtype float16: 
+	#	模型权重和激活值的数据类型
+	#
+	# --chat-template-content-format openai:
+	#	模型使用的 chat 模板 (string 或 openai)，指定此选项对有些模型不适用。
+	#
+	#注意：以下两个选项需要同时使用
+	# --enable-auto-tool-choice: 
+	#	为支持的模型启用自动工具选择
+	#
+	# --tool-call-parser: 
+	#	用 Hermes 格式解析工具调用 (与 Qwen3 模板对齐)
+}
+
+case $1 in
+	--install-vllm)
+		__install_vllm
+		;;
+	--mc-download)
+		__mc_download
+		;;
+	--hf-download)
+		__hf_download
+		;;
+	--run-vllm)
+		__run_vllm
+		;;
+	--help)
+		printf "\nrun_vllm_win.sh [OPTIONS]"
+		printf "\n"
+		printf "\n  OPTIONS:"
+		printf "\n"
+		printf "\n    --install-vllm    install vLLM"
+		printf "\n    --mc-download     download models from ModelScope"
+		printf "\n    --hf-download     download models from HuggingFace through token"
+		printf "\n    --run-vllm        run vLLM inference server"
+		printf "\n\n"
+		;;
+	*)
+		printf "Usage error... Exit...\n"
+esac
+
+
+###故障拾遗：
+#
+# 1. 为什么 vLLM 加载启动不同模型后，客户端发送推理请求可能始终出现空消息或无应答的情况呢？
+# 
+#    比如模型始终回复 "Hello! It seems like you might have meant to ask something, but your message is empty. 
+#    Could you please clarify or ask a question? I'm here to help with anything you need \u2014 whether 
+#    it's a topic to discuss, a problem to solve, or just someone to chat with! \ud83d\ude0a
+#	 
+#    不同模型会话推理使用的 jinja2 模板可能存在差异，vLLM 默认使用内置 OpenAI 模板，这类报错大概率
+#	 是客户端与推理服务器使用的会话模板 (chat template) 不一致导致。
+#    因此，--chat-template-content-format 选项针对不同的模型需测试。
+#
+# 2. 大模型中的权重、位宽与精度的关系？
+#
+#
+# 3. 在 GPU 资源匮乏的场景下，比如本地 8GB GPU 显存，该如何运行 FP16/BF16 权重 (16位) 的模型？
+#
+#    量化：bitsandbytes 动态量化
+#  
+#    原始模型 + CPU offload
+#
+# 4. 如何获取模型的 metadata？
+#    $ curl -s http://192.168.110.208:8000/v1/models
+   

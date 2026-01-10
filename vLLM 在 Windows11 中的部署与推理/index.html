@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>离线 Qwen3-4B 聊天</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* 整体居中（flex）+ 彩色主题 */
+    html,body{height:100%;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;}
+    .center{display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;}
+    .container{width:100%;max-width:700px;background:#ffffff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.3);padding:40px;color:#000;}
+
+    h1{margin:0 0 10px;font-size:1.8em;font-weight:700;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    p{margin:0 0 20px;font-size:1em;color:#555;}
+
+    .input-area{display:flex;gap:12px;margin-bottom:20px;}
+    input[type=text]{flex:1;padding:12px 16px;border:2px solid #e0e0e0;border-radius:8px;font-size:1em;background:#fff;color:#000;transition:border-color .2s;}
+    input[type=text]:focus{outline:none;border-color:#667eea;}
+    button{padding:12px 24px;border:none;border-radius:8px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:1em;font-weight:600;cursor:pointer;transition:background .2s;}
+    button:disabled{background:#a0a0a0;cursor:not-allowed;}
+
+    .output-area{margin-top:20px;padding:16px;border:1px solid #e0e0e0;border-radius:8px;background:#fafafa;font-size:1em;line-height:1.6;min-height:60px;}
+    .error{color:#e74c3f;font-weight:bold;}
+    .spinner{border:2px solid #f3f3f3;border-top:2px solid #667eea;border-radius:50%;width:14px;height:14px;animation:spin 1s linear infinite;display:inline-block;margin-left:8px;}
+    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+
+    /* Markdown 渲染：白底黑字代码 */
+    .md-output h1,.md-output h2,.md-output h3,.md-output h4,.md-output h5,.md-output h6{margin:.2em 0;font-weight:700;color:#000;}
+    .md-output blockquote{border-left:4px solid #ccc;padding-left:1em;margin:1em 0;color:#555;background:#f8f9fa;}
+    .md-output pre{background:#fff;border:1px solid #e0e0e0;padding:1em;border-radius:4px;overflow-x:auto;font-size:1em;line-height:1.4;color:#000;}
+    .md-output code{background:#fff;border:1px solid #e0e0e0;padding:.2em .4em;border-radius:3px;font-size:1em;font-family:Consolas,Monaco,"Courier New",monospace;color:#000;}
+    .md-output ul,.md-output ol{margin:1em 0;padding-left:2em;}
+    .md-output li{margin:.25em 0;}
+    .md-output table{border-collapse:collapse;width:100%;margin:1em 0;}
+    .md-output th,.md-output td{border:1px solid #ccc;padding:.5em;text-align:left;}
+    .md-output th{background:#f8f9fa;font-weight:600;}
+    .md-output a{color:#667eea;text-decoration:none;}
+    .md-output a:hover{text-decoration:underline;}
+  </style>
+</head>
+<body>
+  <div class="center">
+    <div class="container">
+      <h1>离线 Qwen3-4B 聊天</h1>
+      <p>在对话框输入问题，模型将返回结果（Markdown 渲染）。</p>
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="尽管问...">
+        <button id="sendBtn" onclick="sendMessage()">发送</button>
+      </div>
+      <div class="output-area md-output" id="output">等待输入...</div>
+    </div>
+  </div>
+
+  <script>
+    const MODEL = "Qwen/Qwen3-4B-Instruct-2507";
+    const URL = "http://192.168.110.208:8000/v1/chat/completions";
+    const MAX_TOKENS = 2048;
+    const TEMPERATURE = 0.2;
+
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const output = document.getElementById('output');
+
+    async function sendMessage() {
+      const prompt = userInput.value.trim();
+      if (!prompt) return;
+
+      sendBtn.disabled = true;
+      sendBtn.innerHTML = '发送中<span class="spinner"></span>';
+      output.innerHTML = "模型思考中...";
+
+      const payload = {
+        model: MODEL,
+        messages: [{ role: "user", content: prompt }],
+        max_tokens: MAX_TOKENS,
+        temperature: TEMPERATURE
+      };
+
+      try {
+        const response = await fetch(URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+
+        const data = await response.json();
+        const content = data.choices?.[0]?.message?.content ?? "[无内容]";
+        output.innerHTML = renderMarkdown(content);
+
+      } catch (err) {
+        output.innerHTML = `<span class="error">请求失败：${err.message}</span>`;
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = "发送";
+      }
+    }
+
+    // 轻量级 Markdown 渲染器（彩色界面，代码白底黑字）
+    function renderMarkdown(md) {
+      return md
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>')
+        .replace(/^[\*-] (.*$)/gim, '<ul><li>$1</li></ul>')
+        .replace(/^\|(.+)\|$/gim, '<tr><td>$1</td></tr>')
+        .replace(/\n/g, '<br>')
+        .replace(/<\/(h[1-6]|ul|ol|blockquote|table)><br>/g, '</$1>')
+        .replace(/<br><\/(ul|ol|blockquote|table)>/g, '</$1>');
+    }
+
+    // 回车快捷发送
+    userInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") sendMessage();
+    });
+  </script>
+</body>
+</html>
