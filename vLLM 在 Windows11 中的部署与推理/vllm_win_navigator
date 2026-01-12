@@ -1,17 +1,7 @@
 #!/bin/bash
 #
-# 功能：Win11 环境中部署运行 vLLM 推理服务器
-# 创建日期：2026-01-06
-# 
-# 环境所需软硬件要求：
-#   - Python: 3.12.10
-#   - GPU: NVIDIA RTX 2000 Ada Generation Laptop GPU
-#   - CUDA Toolkit: >=11.6
-#   - torch: 2.7.1+cu126
+# Install and run vLLM inference server in Win11
 #
-# 使用方法：
-#   - 由于 CMD/PowerShell 无法兼容 Bash，因此在 Win11 中安装并打开 Git-Bash 再运行此脚本。
-#   - $ sh ./run_vllm_win [OPTIONS]
 
 function __source_env {
 	cd $HOME/vllm/
@@ -25,12 +15,20 @@ function __install_vllm {
 	python -m venv .venv  #创建 vllm 的虚拟运行环境
 	source $HOME/vllm/.venv/Scripts/activate
 
-	pip install torch==2.7.1+cu126 torchaudio==2.7.1+cu126 torchvision==0.22.1+cu126 \
+	VLLM_WHL=vllm-0.10.2+cu124-cp312-cp312-win_amd64.whl
+	pip install \
+		torch==2.7.1+cu126 torchaudio==2.7.1+cu126 torchvision==0.22.1+cu126 \
 		--index-url https://download.pytorch.org/whl/cu126
+	if [[ -f $VLLM_WHL ]]; then
+		printf "\n---> $VLLM_WHL existing... Start installing..."
+	else
+		printf "\n---> No file... Please download first..."
+		printf "\n\n     https://github.com/SystemPanic/vllm-windows/releases/download/v0.10.2/vllm-0.10.2+cu124-cp312-cp312-win_amd64.whl\n\n"
+	fi
 	pip install vllm-0.10.2+cu124-cp312-cp312-win_amd64.whl
-	#兼容 windows 的 vllm whl 下载地址：https://github.com/SystemPanic/vllm-windows/releases
 	python -m pip install --upgrade pip
 	vllm --version  #确认 vllm 版本
+	[[ $? -eq 0 ]] && printf "\n---> vLLM install successfully..."
 }
 
 function __mc_download {
@@ -123,29 +121,3 @@ case $1 in
 	*)
 		printf "Usage error... Exit...\n"
 esac
-
-
-###故障拾遗：
-#
-# 1. 为什么 vLLM 加载启动不同模型后，客户端发送推理请求可能始终出现空消息或无应答的情况呢？
-# 
-#    比如模型始终回复 "Hello! It seems like you might have meant to ask something, but your message is empty. 
-#    Could you please clarify or ask a question? I'm here to help with anything you need \u2014 whether 
-#    it's a topic to discuss, a problem to solve, or just someone to chat with! \ud83d\ude0a
-#	 
-#    不同模型会话推理使用的 jinja2 模板可能存在差异，vLLM 默认使用内置 OpenAI 模板，这类报错大概率
-#	 是客户端与推理服务器使用的会话模板 (chat template) 不一致导致。
-#    因此，--chat-template-content-format 选项针对不同的模型需测试。
-#
-# 2. 大模型中的权重、位宽与精度的关系？
-#
-#
-# 3. 在 GPU 资源匮乏的场景下，比如本地 8GB GPU 显存，该如何运行 FP16/BF16 权重 (16位) 的模型？
-#
-#    量化：bitsandbytes 动态量化
-#  
-#    原始模型 + CPU offload
-#
-# 4. 如何获取模型的 metadata？
-#    $ curl -s http://192.168.110.208:8000/v1/models
-   
