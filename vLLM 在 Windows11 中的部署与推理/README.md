@@ -27,7 +27,7 @@
 
 - `--install-vllm` 选项：创建 vLLM 虚拟环境，安装相关依赖与 vLLM 的 whl。
 
-  > 注意：请提前从 https://github.com/SystemPanic/vllm-windows/releases（兼容 windows 的 vllm whl）下载 whl 至当前目录。
+  > 注意：请提前从 https://github.com/SystemPanic/vllm-windows/releases (兼容 windows 的 vllm whl) 下载 whl 至当前目录。
 
 - `--mc-download` 选项：从 ModelScope（魔搭社区）下载指定模型，此处以 Qwen/Qwen3-4B-Instruct-2507-FP8 为例。
 - `--hf-download` 选项：从 Hugging Face 开源社区下载指定模型，此处以 Qwen/Qwen3-4B-Instruct-2507 为例。
