@@ -42,7 +42,7 @@
   #切换至当前目录中运行
   $ sh ./vllm_win_navigator --help
 
-  run_vllm_win.sh [OPTIONS]
+  vllm_win_navigator [OPTIONS]
 
     OPTIONS:
 
