@@ -84,7 +84,7 @@ $ python ./chat_payload_cli.py
 $ python -m http.server 8880  #在当前目录中运行 Web 服务端
 ```
   
-打开 Web 端访问测试模型，以访问本地地址 http://192.168.110.209:8880：
+打开 Web 端访问测试模型，以访问本地地址 http://192.168.110.209:8880
 
 ![vllm-web-client-demo-2](images/vllm-web-client-demo-2.png)
 

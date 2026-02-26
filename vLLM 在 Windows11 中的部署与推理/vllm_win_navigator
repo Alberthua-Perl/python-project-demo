@@ -70,7 +70,7 @@ function __run_vllm {
 		--host 0.0.0.0 \
 		--port 8000
 	
-	#选项说明：
+	#选项说明：https://docs.vllm.com.cn/en/latest/cli/serve/ (vLLM 选项说明)
 	#
 	# --max-model-len 5000:
 	# 	指定模型接收用户输入与模型输出最大 token 数量，该值由 GPU 硬件与推理框架计算获得，
