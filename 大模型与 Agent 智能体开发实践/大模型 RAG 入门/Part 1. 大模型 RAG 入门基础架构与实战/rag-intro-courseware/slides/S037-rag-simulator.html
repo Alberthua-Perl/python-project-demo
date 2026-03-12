@@ -1,0 +1,134 @@
+<div class="slide" style="justify-content:center;align-items:center;">
+    <!-- 标题区 -->
+    <div style="margin-bottom:8px;"><span class="badge purple">第三章 · 压轴体验</span></div>
+    <h2 class="page-title animate-ready delay-1" style="font-size:clamp(1.6rem,2.8vw,2.2rem);margin-bottom:6px;">🎮 RAG 全流程交互模拟器</h2>
+    <p class="page-subtitle animate-ready delay-2" style="font-size:0.95em;margin-bottom:12px;max-width:90%;">亲手体验数据从「原始文档」到「智能回答」的完整旅程</p>
+
+    <!-- Pipeline 进度条 -->
+    <div id="sim-pipeline" class="animate-ready delay-3" style="width:100%;max-width:1050px;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:nowrap;">
+            <div class="sim-node" id="sim-node-0" data-label="原始文档">📄</div>
+            <div class="sim-edge sim-edge-offline">→</div>
+            <div class="sim-node" id="sim-node-1" data-label="文本切分">✂️</div>
+            <div class="sim-edge sim-edge-offline">→</div>
+            <div class="sim-node" id="sim-node-2" data-label="Embedding">🔢</div>
+            <div class="sim-edge sim-edge-offline">→</div>
+            <div class="sim-node" id="sim-node-3" data-label="向量库">🗄️</div>
+            <div class="sim-divider">║</div>
+            <div class="sim-node" id="sim-node-4" data-label="用户提问">❓</div>
+            <div class="sim-edge sim-edge-online">→</div>
+            <div class="sim-node" id="sim-node-5" data-label="查询向量化">🔢</div>
+            <div class="sim-edge sim-edge-online">→</div>
+            <div class="sim-node" id="sim-node-6" data-label="相似检索">🔍</div>
+            <div class="sim-edge sim-edge-online">→</div>
+            <div class="sim-node" id="sim-node-7" data-label="拼接Prompt">📝</div>
+            <div class="sim-edge sim-edge-online">→</div>
+            <div class="sim-node" id="sim-node-8" data-label="LLM回答">🤖</div>
+        </div>
+    </div>
+
+    <!-- 阶段标签 -->
+    <div id="sim-phase-label" class="animate-ready delay-3" style="display:flex;gap:20px;margin-bottom:10px;font-size:0.8em;">
+        <span id="sim-label-offline" style="color:var(--primary);font-weight:600;opacity:0.4;">📦 离线索引阶段</span>
+        <span id="sim-label-online" style="color:var(--secondary);font-weight:600;opacity:0.4;">⚡ 在线问答阶段</span>
+    </div>
+
+    <!-- 主动画区域 -->
+    <div id="sim-stage" class="animate-ready delay-4" style="width:100%;max-width:1050px;min-height:42vh;display:flex;justify-content:center;align-items:center;position:relative;">
+        <!-- Stage 0: 原始文档 -->
+        <div id="sim-s0" class="sim-scene">
+            <div id="sim-doc-card" class="sim-doc-card">
+                <div style="font-weight:700;font-size:1.05em;margin-bottom:10px;color:var(--primary);">📄 公司年假管理制度</div>
+                <div style="font-size:0.85em;line-height:1.8;color:var(--text-secondary);text-align:left;" id="sim-doc-text">员工入职满一年后享有5天带薪年假，满三年增至10天，满五年增至15天。年假须提前三个工作日申请，经直属主管审批后生效。未休年假可在次年第一季度内补休，逾期作废。病假期间不计入年假。特殊岗位（如客服、运维）需在部门排班表确认后方可休假。年假期间薪资照常发放，绩效考核不受影响。离职时未休年假按日薪折算补偿。</div>
+            </div>
+        </div>
+        <!-- Stage 1: 文本切分 -->
+        <div id="sim-s1" class="sim-scene" style="display:none;">
+            <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:flex-start;" id="sim-chunks-container"></div>
+        </div>
+        <!-- Stage 2: Embedding -->
+        <div id="sim-s2" class="sim-scene" style="display:none;">
+            <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:flex-start;" id="sim-embed-container"></div>
+        </div>
+        <!-- Stage 3: 向量库 -->
+        <div id="sim-s3" class="sim-scene" style="display:none;">
+            <div style="display:flex;gap:24px;align-items:center;justify-content:center;width:100%;">
+                <canvas id="sim-scatter" width="420" height="300" style="border-radius:14px;background:rgba(224,236,255,0.6);"></canvas>
+                <div id="sim-db-panel" style="display:flex;flex-direction:column;gap:8px;min-width:200px;"></div>
+            </div>
+        </div>
+        <!-- Stage 4: 用户提问 -->
+        <div id="sim-s4" class="sim-scene" style="display:none;">
+            <div style="display:flex;gap:24px;align-items:center;justify-content:center;width:100%;">
+                <div id="sim-query-bubble" class="sim-query-bubble">
+                    <div style="font-size:0.8em;color:var(--secondary);font-weight:600;margin-bottom:8px;">💬 用户提问</div>
+                    <div id="sim-query-text" style="font-size:1.05em;color:var(--text-primary);font-weight:500;"></div>
+                    <span id="sim-cursor" class="sim-typing-cursor">|</span>
+                </div>
+                <canvas id="sim-scatter-4" width="340" height="260" style="border-radius:14px;background:rgba(224,236,255,0.6);"></canvas>
+            </div>
+        </div>
+        <!-- Stage 5: Query Embedding -->
+        <div id="sim-s5" class="sim-scene" style="display:none;">
+            <div style="display:flex;gap:24px;align-items:center;justify-content:center;width:100%;">
+                <div id="sim-query-embed-card" class="sim-flip-card" style="width:280px;height:180px;">
+                    <div class="sim-flip-inner" id="sim-query-flip-inner">
+                        <div class="sim-flip-front">
+                            <div style="font-size:0.8em;color:var(--secondary);font-weight:600;margin-bottom:8px;">💬 用户提问</div>
+                            <div style="font-size:0.95em;">公司工作满三年有多少天年假？</div>
+                        </div>
+                        <div class="sim-flip-back">
+                            <div style="font-size:0.8em;color:var(--accent);font-weight:600;margin-bottom:8px;">🔢 Query 向量</div>
+                            <div style="font-size:0.78em;font-family:Monaco,monospace;word-break:break-all;color:var(--text-secondary);">[0.31, -0.08, 0.72, 0.15, -0.44, 0.63, ...]</div>
+                        </div>
+                    </div>
+                </div>
+                <canvas id="sim-scatter-5" width="380" height="280" style="border-radius:14px;background:rgba(224,236,255,0.6);"></canvas>
+            </div>
+        </div>
+        <!-- Stage 6: 相似度检索 -->
+        <div id="sim-s6" class="sim-scene" style="display:none;">
+            <div style="display:flex;gap:24px;align-items:center;justify-content:center;width:100%;">
+                <canvas id="sim-scatter-6" width="440" height="300" style="border-radius:14px;background:rgba(224,236,255,0.6);"></canvas>
+                <div id="sim-topk-panel" style="display:flex;flex-direction:column;gap:10px;min-width:260px;max-width:320px;"></div>
+            </div>
+        </div>
+        <!-- Stage 7: Prompt 拼接 -->
+        <div id="sim-s7" class="sim-scene" style="display:none;">
+            <div style="display:flex;gap:14px;align-items:stretch;justify-content:center;width:100%;flex-wrap:wrap;" id="sim-prompt-area">
+                <div id="sim-prompt-sys" class="sim-prompt-card sim-prompt-sys">
+                    <div style="font-size:0.78em;color:var(--primary);font-weight:700;margin-bottom:6px;">🛡️ System Prompt</div>
+                    <div style="font-size:0.78em;line-height:1.6;color:var(--text-secondary);">你是一个企业知识助手。请严格根据以下【参考资料】回答用户问题，不要编造信息。如果资料中没有相关内容，请如实说明。</div>
+                </div>
+                <div id="sim-prompt-ctx" class="sim-prompt-card sim-prompt-ctx">
+                    <div style="font-size:0.78em;color:#16a34a;font-weight:700;margin-bottom:6px;">📚 检索到的参考资料</div>
+                    <div style="font-size:0.75em;line-height:1.6;color:var(--text-secondary);" id="sim-prompt-ctx-text"></div>
+                </div>
+                <div id="sim-prompt-query" class="sim-prompt-card sim-prompt-query">
+                    <div style="font-size:0.78em;color:var(--secondary);font-weight:700;margin-bottom:6px;">❓ 用户问题</div>
+                    <div style="font-size:0.82em;color:var(--text-primary);font-weight:500;">公司工作满三年有多少天年假？</div>
+                </div>
+            </div>
+        </div>
+        <!-- Stage 8: LLM 回答 -->
+        <div id="sim-s8" class="sim-scene" style="display:none;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;">
+                <div id="sim-llm-box" class="sim-llm-box">
+                    <div style="font-size:1.8em;margin-bottom:6px;" id="sim-llm-icon">🧠</div>
+                    <div style="font-size:0.85em;color:var(--text-secondary);" id="sim-llm-status">大模型思考中</div>
+                    <div class="sim-thinking-dots" id="sim-thinking"><span>.</span><span>.</span><span>.</span></div>
+                </div>
+                <div id="sim-answer-card" class="sim-answer-card" style="opacity:0;">
+                    <div style="font-size:0.8em;color:#16a34a;font-weight:700;margin-bottom:8px;">✅ RAG 增强回答</div>
+                    <div id="sim-answer-text" style="font-size:0.9em;line-height:1.8;color:var(--text-primary);"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部说明 + 按钮 -->
+    <div class="animate-ready delay-5" style="text-align:center;width:100%;max-width:800px;">
+        <p id="sim-desc" style="font-size:0.88em;color:var(--text-secondary);line-height:1.7;margin-bottom:10px;">这是一份完整的企业知识文档。接下来，我们要让大模型能「读懂」它——点击按钮，开始 RAG 离线索引流程。</p>
+        <button id="sim-btn" class="demo-btn">✂️ 开始切分</button>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第三章 · 3.9</span></div>
+    <h2 class="page-title animate-ready delay-1">Token 预算控制与上下文拼接</h2>
+    <p class="page-subtitle animate-ready delay-2">拖动滑块调整 Token 预算，观察哪些 Chunk 被截断</p>
+
+    <!-- Chunk Cards Row -->
+    <div class="animate-ready delay-3" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:920px;width:100%;margin-bottom:20px;">
+
+        <!-- Card 1 -->
+        <div id="chunk-card-1" data-tokens="320" data-score="0.92" style="position:relative;width:160px;background:var(--card-bg);border:1.5px solid var(--card-border);border-radius:14px;padding:16px 14px;text-align:left;transition:all 0.4s ease;">
+            <div id="chunk-status-1" style="position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;font-size:0.72em;display:none;align-items:center;justify-content:center;font-weight:bold;"></div>
+            <div style="font-size:0.82em;font-weight:700;color:#2563eb;margin-bottom:6px;">Chunk 1</div>
+            <div style="font-size:0.72em;color:var(--text-secondary);line-height:1.5;height:36px;overflow:hidden;">公司年假制度规定，入职满一年享有带薪年假...</div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:0.7em;color:var(--text-dim);font-family:Monaco,monospace;">cos=0.92</span>
+                <span style="font-size:0.68em;padding:2px 8px;background:rgba(37,99,235,0.1);border-radius:6px;color:#2563eb;font-weight:600;">320 tk</span>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div id="chunk-card-2" data-tokens="280" data-score="0.87" style="position:relative;width:160px;background:var(--card-bg);border:1.5px solid var(--card-border);border-radius:14px;padding:16px 14px;text-align:left;transition:all 0.4s ease;">
+            <div id="chunk-status-2" style="position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;font-size:0.72em;display:none;align-items:center;justify-content:center;font-weight:bold;"></div>
+            <div style="font-size:0.82em;font-weight:700;color:#7c3aed;margin-bottom:6px;">Chunk 2</div>
+            <div style="font-size:0.72em;color:var(--text-secondary);line-height:1.5;height:36px;overflow:hidden;">年假须提前三个工作日申请，经主管审批后生效...</div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:0.7em;color:var(--text-dim);font-family:Monaco,monospace;">cos=0.87</span>
+                <span style="font-size:0.68em;padding:2px 8px;background:rgba(124,58,237,0.1);border-radius:6px;color:#7c3aed;font-weight:600;">280 tk</span>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div id="chunk-card-3" data-tokens="450" data-score="0.81" style="position:relative;width:160px;background:var(--card-bg);border:1.5px solid var(--card-border);border-radius:14px;padding:16px 14px;text-align:left;transition:all 0.4s ease;">
+            <div id="chunk-status-3" style="position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;font-size:0.72em;display:none;align-items:center;justify-content:center;font-weight:bold;"></div>
+            <div style="font-size:0.82em;font-weight:700;color:#0891b2;margin-bottom:6px;">Chunk 3</div>
+            <div style="font-size:0.72em;color:var(--text-secondary);line-height:1.5;height:36px;overflow:hidden;">未休年假可在次年第一季度补休，逾期作废...</div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:0.7em;color:var(--text-dim);font-family:Monaco,monospace;">cos=0.81</span>
+                <span style="font-size:0.68em;padding:2px 8px;background:rgba(8,145,178,0.1);border-radius:6px;color:#0891b2;font-weight:600;">450 tk</span>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div id="chunk-card-4" data-tokens="210" data-score="0.74" style="position:relative;width:160px;background:var(--card-bg);border:1.5px solid var(--card-border);border-radius:14px;padding:16px 14px;text-align:left;transition:all 0.4s ease;">
+            <div id="chunk-status-4" style="position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;font-size:0.72em;display:none;align-items:center;justify-content:center;font-weight:bold;"></div>
+            <div style="font-size:0.82em;font-weight:700;color:#f59e0b;margin-bottom:6px;">Chunk 4</div>
+            <div style="font-size:0.72em;color:var(--text-secondary);line-height:1.5;height:36px;overflow:hidden;">特殊岗位需在部门排班表确认后方可休假...</div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:0.7em;color:var(--text-dim);font-family:Monaco,monospace;">cos=0.74</span>
+                <span style="font-size:0.68em;padding:2px 8px;background:rgba(245,158,11,0.1);border-radius:6px;color:#f59e0b;font-weight:600;">210 tk</span>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div id="chunk-card-5" data-tokens="380" data-score="0.65" style="position:relative;width:160px;background:var(--card-bg);border:1.5px solid var(--card-border);border-radius:14px;padding:16px 14px;text-align:left;transition:all 0.4s ease;">
+            <div id="chunk-status-5" style="position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;font-size:0.72em;display:none;align-items:center;justify-content:center;font-weight:bold;"></div>
+            <div style="font-size:0.82em;font-weight:700;color:#ef4444;margin-bottom:6px;">Chunk 5</div>
+            <div style="font-size:0.72em;color:var(--text-secondary);line-height:1.5;height:36px;overflow:hidden;">离职时未休年假按日薪折算补偿，绩效不受影响...</div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:0.7em;color:var(--text-dim);font-family:Monaco,monospace;">cos=0.65</span>
+                <span style="font-size:0.68em;padding:2px 8px;background:rgba(239,68,68,0.1);border-radius:6px;color:#ef4444;font-weight:600;">380 tk</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Slider + Stats Panel -->
+    <div class="animate-ready delay-4" style="width:100%;max-width:700px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:22px 28px;">
+
+        <!-- Slider Row -->
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+            <span style="font-size:0.82em;color:var(--text-secondary);white-space:nowrap;">Token 预算</span>
+            <input type="range" id="token-slider" min="500" max="2000" value="1200" step="100" style="flex:1;accent-color:#2563eb;">
+            <div style="min-width:70px;text-align:center;font-size:1.3em;font-weight:bold;color:#2563eb;font-family:Monaco,monospace;" id="slider-value">1200</div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div style="width:100%;height:10px;background:rgba(37,99,235,0.08);border-radius:6px;overflow:hidden;margin-bottom:12px;">
+            <div id="budget-bar" style="height:100%;width:50%;border-radius:6px;background:linear-gradient(90deg,#22c55e,#22c55e);transition:all 0.3s ease;"></div>
+        </div>
+
+        <!-- Stats Text -->
+        <div id="stats-text" style="font-size:0.85em;color:var(--text-secondary);font-family:Monaco,monospace;">
+            已选 0 个片段 | 共 0 tokens / 预算 1200 tokens
+        </div>
+    </div>
+
+    <p style="margin-top:12px;font-size:0.78em;color:var(--text-dim);">Token 预算不足时，低相似度的片段会被截断——这就是 RAG 中「上下文窗口管理」的核心取舍</p>
+</div>

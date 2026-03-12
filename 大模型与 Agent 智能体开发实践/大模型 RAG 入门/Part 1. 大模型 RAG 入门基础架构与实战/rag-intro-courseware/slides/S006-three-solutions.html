@@ -1,0 +1,26 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div class="animate-ready delay-1" style="margin-bottom:8px;"><span class="badge">第一章 · 1.2</span></div>
+    <h2 class="page-title animate-ready delay-2">三种知识注入方案对比</h2>
+    <p class="page-subtitle animate-ready delay-3">Prompt Engineering · Fine-tuning · RAG——各有适用场景</p>
+    <div class="animate-ready delay-4" style="width:100%;max-width:1000px;overflow:hidden;border-radius:16px;border:1px solid var(--card-border);">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>维度</th>
+                    <th style="color:#06b6d4;">Prompt Engineering</th>
+                    <th style="color:#fb923c;">Fine-tuning</th>
+                    <th style="color:#3b82f6;">RAG ⭐</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>核心思路</td><td>直接塞入上下文</td><td>用领域数据重训</td><td>先检索再生成</td></tr>
+                <tr><td>知识更新速度</td><td>即时</td><td>慢（需重训）</td><td style="color:#3b82f6;font-weight:600;">快（更新知识库）</td></tr>
+                <tr><td>成本</td><td>低</td><td>高（GPU+标注）</td><td>中</td></tr>
+                <tr><td>知识容量</td><td>受限于上下文窗口</td><td>受限于训练数据</td><td style="color:#3b82f6;font-weight:600;">理论上无限</td></tr>
+                <tr><td>幻觉控制</td><td>一般</td><td>较好（领域内）</td><td style="color:#3b82f6;font-weight:600;">好（有据可查）</td></tr>
+                <tr><td>适用场景</td><td>简单任务、少量上下文</td><td>风格/格式定制</td><td style="color:#3b82f6;font-weight:600;">知识密集型问答</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="animate-ready delay-5" style="margin-top:16px;font-size:0.85em;color:var(--text-dim);">💡 经验法则：先用 RAG 验证可行性，RAG 无法满足时再考虑 Fine-tuning</p>
+</div>

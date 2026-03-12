@@ -1,0 +1,36 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第二章 · 2.2.1</span></div>
+    <h2 class="page-title animate-ready delay-1">Document Loader：统一数据入口</h2>
+    <p class="page-subtitle animate-ready delay-2">把异构数据统一转换为标准 Document 对象</p>
+    <div class="vs-container animate-ready delay-3" style="max-width:900px;">
+        <div class="vs-panel" style="border-color:rgba(251,146,60,0.3);">
+            <div style="font-size:1em;font-weight:bold;color:#fb923c;margin-bottom:16px;">📥 输入：各种格式</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="padding:10px 14px;background:rgba(251,146,60,0.1);border-radius:8px;font-size:0.9em;color:var(--text-secondary);">📄 PDF 报告</div>
+                <div style="padding:10px 14px;background:rgba(251,146,60,0.1);border-radius:8px;font-size:0.9em;color:var(--text-secondary);">📝 Word 文档</div>
+                <div style="padding:10px 14px;background:rgba(251,146,60,0.1);border-radius:8px;font-size:0.9em;color:var(--text-secondary);">🌐 HTML 网页</div>
+                <div style="padding:10px 14px;background:rgba(251,146,60,0.1);border-radius:8px;font-size:0.9em;color:var(--text-secondary);">📋 Markdown 笔记</div>
+                <div style="padding:10px 14px;background:rgba(251,146,60,0.1);border-radius:8px;font-size:0.9em;color:var(--text-secondary);">🗃️ 数据库记录</div>
+            </div>
+        </div>
+        <div class="vs-divider" style="flex-direction:column;gap:8px;">
+            <div style="font-size:2em;">⚙️</div>
+            <div style="font-size:0.8em;color:#3b82f6;text-align:center;">Document<br>Loader</div>
+            <div style="font-size:1.5em;">→</div>
+        </div>
+        <div class="vs-panel" style="border-color:rgba(59,130,246,0.3);">
+            <div style="font-size:1em;font-weight:bold;color:#3b82f6;margin-bottom:16px;">📤 输出：统一结构</div>
+            <div style="background:rgba(59,130,246,0.1);border-radius:10px;padding:16px;font-family:Monaco,monospace;font-size:0.82em;text-align:left;line-height:1.8;">
+                <span style="color:#8b5cf6;">{</span><br>
+                &nbsp;&nbsp;<span style="color:#06b6d4;">"page_content"</span>: <span style="color:#4ade80;">"文档正文内容..."</span>,<br>
+                &nbsp;&nbsp;<span style="color:#06b6d4;">"metadata"</span>: <span style="color:#8b5cf6;">{</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#06b6d4;">"source"</span>: <span style="color:#4ade80;">"policy.pdf"</span>,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#06b6d4;">"type"</span>: <span style="color:#4ade80;">"pdf"</span>,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#06b6d4;">"pages"</span>: <span style="color:#fb923c;">12</span><br>
+                &nbsp;&nbsp;<span style="color:#8b5cf6;">}</span><br>
+                <span style="color:#8b5cf6;">}</span>
+            </div>
+            <div style="margin-top:12px;font-size:0.82em;color:var(--text-dim);">⚠️ 垃圾进，垃圾出——文档解析质量是 RAG 的第一道关卡</div>
+        </div>
+    </div>
+</div>

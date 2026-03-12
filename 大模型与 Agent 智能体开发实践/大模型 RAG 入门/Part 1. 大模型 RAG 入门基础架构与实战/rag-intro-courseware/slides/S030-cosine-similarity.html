@@ -1,0 +1,28 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第三章 · 3.2</span></div>
+    <h2 class="page-title animate-ready delay-1">余弦相似度：方向决定语义距离</h2>
+    <p class="page-subtitle animate-ready delay-2">点击句子对，观察向量夹角变化——夹角越小，语义越相似</p>
+    <div style="width:100%;max-width:900px;display:flex;gap:24px;align-items:flex-start;">
+        <div style="flex:1;display:flex;flex-direction:column;gap:10px;">
+            <div class="cosine-pair card" data-a1="0.3" data-a2="0.5" data-score="0.92" data-c1="#3b82f6" data-c2="#8b5cf6" style="cursor:pointer;text-align:left;padding:14px 18px;border-color:rgba(59,130,246,0.3);">
+                <div style="font-size:0.82em;color:#3b82f6;margin-bottom:4px;">句子对 A — 中文同义</div>
+                <div style="font-size:0.88em;color:var(--text-secondary);">「如何申请年假」vs「请假流程是什么」</div>
+                <div style="font-size:0.8em;color:var(--text-dim);margin-top:4px;">夹角小 → 相似度高</div>
+            </div>
+            <div class="cosine-pair card" data-a1="0.3" data-a2="2.2" data-score="0.24" data-c1="#3b82f6" data-c2="#ef4444" style="cursor:pointer;text-align:left;padding:14px 18px;border-color:rgba(239,68,68,0.3);">
+                <div style="font-size:0.82em;color:#ef4444;margin-bottom:4px;">句子对 B — 语义无关</div>
+                <div style="font-size:0.88em;color:var(--text-secondary);">「如何申请年假」vs「今天天气怎么样」</div>
+                <div style="font-size:0.8em;color:var(--text-dim);margin-top:4px;">夹角大 → 相似度低</div>
+            </div>
+            <div class="cosine-pair card" data-a1="0.3" data-a2="0.65" data-score="0.78" data-c1="#3b82f6" data-c2="#fb923c" style="cursor:pointer;text-align:left;padding:14px 18px;border-color:rgba(251,146,60,0.3);">
+                <div style="font-size:0.82em;color:#fb923c;margin-bottom:4px;">句子对 C — 中英文同义</div>
+                <div style="font-size:0.88em;color:var(--text-secondary);">「Python 列表排序」vs「Python list sort」</div>
+                <div style="font-size:0.8em;color:var(--text-dim);margin-top:4px;">跨语言语义匹配</div>
+            </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:12px;">
+            <canvas id="cosine-canvas" width="240" height="240"></canvas>
+            <div style="font-size:0.82em;color:var(--text-dim);text-align:center;max-width:220px;line-height:1.5;">余弦相似度 = 两向量夹角的余弦值<br>值域 [0, 1]，越接近 1 越相似</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:6px;"><span class="badge">第一章 · 1.5</span></div>
+    <h2 class="page-title animate-ready delay-1" style="margin-bottom:1vh;">广义 RAG vs 狭义 RAG：区别在于检索源</h2>
+    <p class="page-subtitle animate-ready delay-2" style="margin-bottom:1vh;font-size:clamp(0.9rem,1.5vw,1.2rem);">点击左侧或右侧路径，查看两种 RAG 的差异</p>
+
+    <!-- Question bubble -->
+    <div class="animate-ready delay-3" style="background:linear-gradient(135deg,rgba(37,99,235,0.12),rgba(124,58,237,0.10));border:1.5px solid rgba(37,99,235,0.25);border-radius:12px;padding:10px 24px;margin-bottom:1.2vh;max-width:420px;">
+        <div style="font-size:0.95em;font-weight:600;color:var(--text-primary);">❓ 公司年假制度是什么？</div>
+    </div>
+
+    <!-- Fork split indicator -->
+    <div class="animate-ready delay-3" style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:1vh;width:100%;max-width:500px;">
+        <div style="flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(245,158,11,0.5));"></div>
+        <div style="font-size:0.75em;color:var(--text-dim);white-space:nowrap;">两条检索路径</div>
+        <div style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(59,130,246,0.5));"></div>
+    </div>
+
+    <!-- Fork paths container -->
+    <div class="animate-ready delay-4" style="display:flex;gap:2.5vw;width:100%;max-width:900px;">
+
+        <!-- Left path: 广义RAG -->
+        <div id="path-broad" style="flex:1;cursor:pointer;opacity:0.35;transition:all 0.5s ease;padding:6px;border-radius:14px;">
+            <div id="broad-node-1" style="background:rgba(245,158,11,0.10);border:1.5px solid rgba(245,158,11,0.3);border-radius:10px;padding:8px 12px;transition:all 0.4s ease;display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">💬</div>
+                <div style="text-align:left;"><div style="font-size:0.8em;font-weight:600;color:#f59e0b;">提问入口</div><div style="font-size:0.65em;color:var(--text-dim);">自然语言问题</div></div>
+            </div>
+            <div style="display:flex;justify-content:center;padding:2px 0;"><div style="width:2px;height:12px;border-left:2px dashed rgba(245,158,11,0.35);"></div></div>
+            <div id="broad-node-2" style="background:rgba(245,158,11,0.10);border:1.5px solid rgba(245,158,11,0.3);border-radius:10px;padding:8px 12px;transition:all 0.4s ease;display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">🌐</div>
+                <div style="text-align:left;"><div style="font-size:0.8em;font-weight:600;color:#f59e0b;">联网搜索</div><div style="font-size:0.65em;color:var(--text-dim);">Google / Bing / API</div></div>
+            </div>
+            <div style="display:flex;justify-content:center;padding:2px 0;"><div style="width:2px;height:12px;border-left:2px dashed rgba(245,158,11,0.35);"></div></div>
+            <div id="broad-node-3" style="background:rgba(245,158,11,0.10);border:1.5px solid rgba(245,158,11,0.3);border-radius:10px;padding:8px 12px;transition:all 0.4s ease;display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">📰</div>
+                <div style="text-align:left;"><div style="font-size:0.8em;font-weight:600;color:#f59e0b;">多条网页结果</div><div style="font-size:0.65em;color:var(--text-dim);">公开信息、不可控来源</div></div>
+            </div>
+            <div style="display:flex;justify-content:center;padding:2px 0;"><div style="width:2px;height:12px;border-left:2px dashed rgba(245,158,11,0.35);"></div></div>
+            <div id="broad-node-4" style="background:rgba(245,158,11,0.10);border:1.5px solid rgba(245,158,11,0.3);border-radius:10px;padding:8px 12px;transition:all 0.4s ease;display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">🤖</div>
+                <div style="text-align:left;"><div style="font-size:0.8em;font-weight:600;color:#f59e0b;">LLM 回答</div><div style="font-size:0.65em;color:var(--text-dim);">基于公开网页生成</div></div>
+            </div>
+            <div style="margin-top:8px;font-size:0.85em;font-weight:700;color:#f59e0b;">广义 RAG</div>
+            <!-- Explanation card (hidden initially) -->
+            <div id="broad-explain" style="display:none;margin-top:8px;background:rgba(245,158,11,0.08);border:1.5px solid rgba(245,158,11,0.25);border-radius:10px;padding:10px 12px;text-align:left;">
+                <div style="font-size:0.75em;color:var(--text-secondary);line-height:1.6;">检索源为互联网公开数据。信息覆盖面广，但<span style="color:#ef4444;font-weight:600;">来源不可控、时效性不稳定</span>，不适合企业私有知识问答。</div>
+            </div>
+        </div>
+
+        <!-- Right path: 狭义RAG -->
+        <div id="path-narrow" style="flex:1;cursor:pointer;opacity:0.35;transition:all 0.5s ease;padding:6px;border-radius:14px;">
+            <div id="narrow-node-1" style="background:rgba(59,130,246,0.10);border:1.5px solid rgba(59,130,246,0.3);border-radius:10px;padding:8px 12px;transition:all 0.4s ease;display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">💬</div>
+                <div style="text-align:left;"><div style="font-size:0.8em;font-weight:600;color:#3b82f6;">提问入口</div><div style="font-size:0.65em;color:var(--text-dim);">自然语言问题</div></div>
+            </div>
+            <div style="display:flex;justify-content:center;padding:2px 0;"><div style="width:2px;height:12px;border-left:2px dashed rgba(59,130,246,0.35);"></div></div>
+            <div id="narrow-node-2" style="background:rgba(59,130,246,0.10);border:1.5px solid rgba(59,130,246,0.3);border-radius:10px;padding:8px 12px;transition:all 0.4s ease;display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">📚</div>
+                <div style="text-align:left;"><div style="font-size:0.8em;font-weight:600;color:#3b82f6;">向量检索</div><div style="font-size:0.65em;color:var(--text-dim);">Embedding + FAISS</div></div>
+            </div>
+            <div style="display:flex;justify-content:center;padding:2px 0;"><div style="width:2px;height:12px;border-left:2px dashed rgba(59,130,246,0.35);"></div></div>
+            <div id="narrow-node-3" style="background:rgba(59,130,246,0.10);border:1.5px solid rgba(59,130,246,0.3);border-radius:10px;padding:8px 12px;transition:all 0.4s ease;display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">📄</div>
+                <div style="text-align:left;"><div style="font-size:0.8em;font-weight:600;color:#3b82f6;">私有文档片段</div><div style="font-size:0.65em;color:var(--text-dim);">企业内部知识、可控来源</div></div>
+            </div>
+            <div style="display:flex;justify-content:center;padding:2px 0;"><div style="width:2px;height:12px;border-left:2px dashed rgba(59,130,246,0.35);"></div></div>
+            <div id="narrow-node-4" style="background:rgba(59,130,246,0.10);border:1.5px solid rgba(59,130,246,0.3);border-radius:10px;padding:8px 12px;transition:all 0.4s ease;display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">🤖</div>
+                <div style="text-align:left;"><div style="font-size:0.8em;font-weight:600;color:#3b82f6;">LLM 回答</div><div style="font-size:0.65em;color:var(--text-dim);">基于私有文档生成</div></div>
+            </div>
+            <div style="margin-top:8px;font-size:0.85em;font-weight:700;color:#3b82f6;">狭义 RAG ⭐</div>
+            <!-- Explanation card (hidden initially) -->
+            <div id="narrow-explain" style="display:none;margin-top:8px;background:rgba(59,130,246,0.08);border:1.5px solid rgba(59,130,246,0.25);border-radius:10px;padding:10px 12px;text-align:left;">
+                <div style="font-size:0.75em;color:var(--text-secondary);line-height:1.6;">检索源为企业私有文档。通过向量化索引实现语义检索，<span style="color:#3b82f6;font-weight:600;">来源可控、答案可溯源</span>，是企业级知识问答的主流方案。</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom conclusion -->
+    <div class="animate-ready delay-5" style="margin-top:1.5vh;background:linear-gradient(135deg,rgba(37,99,235,0.08),rgba(124,58,237,0.08));border:1.5px solid rgba(37,99,235,0.18);border-radius:12px;padding:10px 24px;max-width:650px;">
+        <div style="font-size:0.82em;color:var(--text-secondary);line-height:1.6;">区别不在于「是否检索」，而在于<span style="color:#2563eb;font-weight:600;">检索源的可控性</span>。本课程聚焦<span style="color:#3b82f6;font-weight:600;">狭义 RAG</span>——基于私有知识库的检索增强生成。</div>
+    </div>
+</div>

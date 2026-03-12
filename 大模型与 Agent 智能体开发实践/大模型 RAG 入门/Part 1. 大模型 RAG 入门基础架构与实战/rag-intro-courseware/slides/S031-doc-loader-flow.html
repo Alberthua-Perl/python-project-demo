@@ -1,0 +1,32 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第三章 · 3.4</span></div>
+    <h2 class="page-title animate-ready delay-1">Document Loader：格式→统一结构</h2>
+    <p class="page-subtitle animate-ready delay-2">第一道关卡——解析质量直接决定 RAG 系统的知识质量</p>
+    <div class="animate-ready delay-3" style="width:100%;max-width:900px;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;gap:12px;align-items:stretch;">
+            <div style="flex:1;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:12px;padding:16px;text-align:left;">
+                <div style="font-size:0.85em;color:#3b82f6;font-weight:600;margin-bottom:8px;">✅ TXT / Markdown</div>
+                <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.6;">直接读取，编码 utf-8，提取效果最干净。是建立「成功基准」的首选格式。</div>
+            </div>
+            <div style="flex:1;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);border-radius:12px;padding:16px;text-align:left;">
+                <div style="font-size:0.85em;color:#8b5cf6;font-weight:600;margin-bottom:8px;">⚠️ PDF（常见坑）</div>
+                <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.6;">页眉页脚混入正文、表格结构丢失是最常见的两个问题。pypdf 对扫描版 PDF 返回空字符串而不报错。</div>
+            </div>
+        </div>
+        <div style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:16px;text-align:left;">
+            <div style="font-size:0.85em;color:#ef4444;font-weight:600;margin-bottom:8px;">🔥 踩坑预警：PDF 表格结构丢失示例</div>
+            <div style="display:flex;gap:20px;align-items:flex-start;">
+                <div style="flex:1;">
+                    <div style="font-size:0.78em;color:var(--text-dim);margin-bottom:6px;">原始 PDF 表格：</div>
+                    <div style="font-family:Monaco,monospace;font-size:0.78em;color:var(--text-secondary);background:rgba(0,0,0,0.2);padding:8px;border-radius:6px;line-height:1.8;">假期类型 | 天数 | 是否带薪<br>年假 &nbsp;&nbsp;&nbsp;&nbsp;| 10天 | 是<br>婚假 &nbsp;&nbsp;&nbsp;&nbsp;| 3天 &nbsp;| 是</div>
+                </div>
+                <div style="color:var(--text-dim);font-size:1.5em;padding-top:20px;">→</div>
+                <div style="flex:1;">
+                    <div style="font-size:0.78em;color:var(--text-dim);margin-bottom:6px;">pypdf 提取后：</div>
+                    <div style="font-family:Monaco,monospace;font-size:0.78em;color:#ef4444;background:rgba(0,0,0,0.2);padding:8px;border-radius:6px;line-height:1.8;">假期类型<br>天数<br>是否带薪<br>年假<br>10天<br>是<br>婚假...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="animate-ready delay-4" style="margin-top:12px;font-size:0.8em;color:var(--text-dim);">垃圾进，垃圾出（Garbage In, Garbage Out）——文档解析是 RAG 质量的第一道关卡</p>
+</div>

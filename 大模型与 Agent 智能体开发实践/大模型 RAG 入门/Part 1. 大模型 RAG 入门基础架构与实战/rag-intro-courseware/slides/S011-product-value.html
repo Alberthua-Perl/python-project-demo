@@ -1,0 +1,46 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第一章 · 1.3</span></div>
+    <h2 class="page-title animate-ready delay-1">知识更新方式成本对比</h2>
+    <p class="page-subtitle animate-ready delay-2">RAG 的核心产品价值：分钟级更新 vs 数周重训</p>
+    <div class="animate-ready delay-3"
+        style="width:100%;max-width:900px;overflow:hidden;border-radius:16px;border:1px solid var(--card-border);">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>维度</th>
+                    <th style="color:#ef4444;">模型微调方式（重训/人工维护）</th>
+                    <th style="color:#3b82f6;">RAG 方式（更新知识库）⭐</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>更新周期</td>
+                    <td>数天到数周（标注+训练+部署）</td>
+                    <td style="color:#3b82f6;font-weight:600;">分钟级（上传新文档即生效）</td>
+                </tr>
+                <tr>
+                    <td>人力成本</td>
+                    <td>需要标注团队 + ML 工程师</td>
+                    <td style="color:#3b82f6;font-weight:600;">业务人员即可操作</td>
+                </tr>
+                <tr>
+                    <td>覆盖范围</td>
+                    <td>仅覆盖训练数据中的知识</td>
+                    <td style="color:#3b82f6;font-weight:600;">覆盖知识库中所有文档</td>
+                </tr>
+                <tr>
+                    <td>回答溯源</td>
+                    <td>无法追溯答案来源</td>
+                    <td style="color:#3b82f6;font-weight:600;">可定位到具体文档段落</td>
+                </tr>
+                <tr>
+                    <td>错误修正</td>
+                    <td>需重新训练模型</td>
+                    <td style="color:#3b82f6;font-weight:600;">修改/删除对应文档即可</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="animate-ready delay-4" style="margin-top:16px;font-size:0.85em;color:var(--text-dim);">「回答溯源」是 RAG
+        独有的能力——每条回答都能追溯到具体文档，大幅提升产品可信度</p>
+</div>

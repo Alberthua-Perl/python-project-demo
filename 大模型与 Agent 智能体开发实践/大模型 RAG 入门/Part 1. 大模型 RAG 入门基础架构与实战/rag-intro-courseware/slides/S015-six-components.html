@@ -1,0 +1,20 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:4px;"><span class="badge">第二章 · 2.2</span></div>
+    <h2 class="page-title animate-ready delay-1" style="margin-bottom:1vh;">六大核心组件功能对照</h2>
+    <p class="page-subtitle animate-ready delay-2" style="margin-bottom:2vh;font-size:clamp(0.95rem,1.5vw,1.3rem);">每个组件解决一个明确的问题，像流水线上的工位依次处理数据</p>
+    <div class="animate-ready delay-3" style="width:100%;max-width:960px;overflow:hidden;border-radius:14px;border:1px solid var(--card-border);">
+        <table class="data-table" style="font-size:clamp(0.8rem,1.2vw,1rem);border-collapse:collapse;">
+            <thead>
+                <tr><th style="padding:12px 14px;">组件</th><th style="padding:12px 14px;">解决的问题</th><th style="padding:12px 14px;">输入</th><th style="padding:12px 14px;">输出</th><th style="padding:12px 14px;">典型工具</th></tr>
+            </thead>
+            <tbody>
+                <tr><td style="color:#3b82f6;font-weight:600;padding:12px 14px;">Document Loader</td><td style="padding:12px 14px;">如何读取各种格式文档？</td><td style="padding:12px 14px;">PDF/Word/HTML</td><td style="padding:12px 14px;">Document 对象</td><td style="padding:12px 14px;">LlamaIndex Loaders</td></tr>
+                <tr><td style="color:#8b5cf6;font-weight:600;padding:12px 14px;">Text Splitter</td><td style="padding:12px 14px;">如何切成合适的片段？</td><td style="padding:12px 14px;">完整文档</td><td style="padding:12px 14px;">Chunks 列表</td><td style="padding:12px 14px;">RecursiveCharacterTextSplitter</td></tr>
+                <tr><td style="color:#06b6d4;font-weight:600;padding:12px 14px;">Embedding Model</td><td style="padding:12px 14px;">如何把文本变成向量？</td><td style="padding:12px 14px;">文本字符串</td><td style="padding:12px 14px;">高维浮点向量</td><td style="padding:12px 14px;">OpenAI Embedding, BGE</td></tr>
+                <tr><td style="color:#3b82f6;font-weight:600;padding:12px 14px;">Vector Store</td><td style="padding:12px 14px;">如何高效存储检索向量？</td><td style="padding:12px 14px;">向量 + 元数据</td><td style="padding:12px 14px;">相似向量结果</td><td style="padding:12px 14px;">FAISS, Chroma, Milvus</td></tr>
+                <tr><td style="color:#8b5cf6;font-weight:600;padding:12px 14px;">Retriever</td><td style="padding:12px 14px;">如何找到最相关的片段？</td><td style="padding:12px 14px;">用户问题</td><td style="padding:12px 14px;">Top-K 相关片段</td><td style="padding:12px 14px;">向量检索, BM25, 混合</td></tr>
+                <tr><td style="color:#06b6d4;font-weight:600;padding:12px 14px;">LLM</td><td style="padding:12px 14px;">如何基于检索结果生成回答？</td><td style="padding:12px 14px;">增强 Prompt</td><td style="padding:12px 14px;">自然语言回答</td><td style="padding:12px 14px;">GPT-5, Qwen3, DeepSeek</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>

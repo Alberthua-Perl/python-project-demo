@@ -1,0 +1,25 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第二章 · 2.2.4</span></div>
+    <h2 class="page-title animate-ready delay-1">Vector Store：向量的仓库</h2>
+    <p class="page-subtitle animate-ready delay-2">专为「给定查询向量，快速找到最相似的 K 个向量」而设计</p>
+    <div class="card-grid cols-2 animate-ready delay-3" style="max-width:900px;">
+        <div class="card" style="border-color:rgba(59,130,246,0.3);text-align:left;">
+            <div style="font-size:1.5em;margin-bottom:10px;">⚡</div>
+            <div style="font-size:1em;font-weight:bold;color:#3b82f6;margin-bottom:8px;">为什么需要向量数据库？</div>
+            <div style="font-size:0.88em;color:var(--text-secondary);line-height:1.7;">百万级向量中做精确最近邻搜索太慢。ANN（近似最近邻）算法通过牺牲极小精度换取数量级的速度提升，实际召回率通常在 95% 以上。</div>
+        </div>
+        <div class="card" style="border-color:rgba(139,92,246,0.3);text-align:left;">
+            <div style="font-size:1.5em;margin-bottom:10px;">🗄️</div>
+            <div style="font-size:1em;font-weight:bold;color:#8b5cf6;margin-bottom:8px;">四种主流选择</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;font-size:0.85em;"><span style="color:#3b82f6;font-weight:600;">FAISS</span><span style="color:var(--text-dim);">Meta开源 · 本地实验首选</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85em;"><span style="color:#8b5cf6;font-weight:600;">Chroma</span><span style="color:var(--text-dim);">轻量级 · 原型开发</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85em;"><span style="color:#06b6d4;font-weight:600;">Milvus</span><span style="color:var(--text-dim);">分布式 · 生产环境</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85em;"><span style="color:#fb923c;font-weight:600;">Weaviate</span><span style="color:var(--text-dim);">支持混合检索</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="animate-ready delay-4" style="margin-top:16px;padding:12px 24px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:10px;max-width:700px;font-size:0.85em;color:var(--text-secondary);">
+        选择依据：数据规模（万级→FAISS，百万级→Milvus）+ 部署环境（本地→FAISS/Chroma，云端→Milvus/Weaviate）
+    </div>
+</div>

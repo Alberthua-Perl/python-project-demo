@@ -1,0 +1,29 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:4px;"><span class="badge">第二章 · 2.2.2</span></div>
+    <h2 class="page-title animate-ready delay-1" style="margin-bottom:1vh;">Text Splitter：切分的艺术</h2>
+    <p class="page-subtitle animate-ready delay-2" style="margin-bottom:1.5vh;font-size:clamp(0.9rem,1.4vw,1.2rem);">拖动滑块，观察 chunk_size 如何影响切分结果与重叠区域</p>
+    <div style="width:100%;max-width:860px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:20px;padding:22px 28px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            <div style="font-size:0.85em;color:var(--text-secondary);">chunk_size</div>
+            <div style="font-size:1.6em;font-weight:bold;color:#3b82f6;" id="chunk-display">500</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);">字符</div>
+        </div>
+        <input type="range" id="chunk-slider" min="100" max="1000" value="500" step="50" style="width:100%;margin-bottom:12px;">
+        <div style="display:flex;gap:16px;justify-content:center;margin-bottom:12px;">
+            <div style="text-align:center;padding:8px 16px;background:rgba(59,130,246,0.1);border-radius:10px;">
+                <div style="font-size:1.2em;font-weight:bold;color:#3b82f6;" id="chunk-count">5</div>
+                <div style="font-size:0.72em;color:var(--text-dim);">片段数</div>
+            </div>
+            <div style="text-align:center;padding:8px 16px;background:rgba(139,92,246,0.1);border-radius:10px;">
+                <div style="font-size:1.2em;font-weight:bold;color:#8b5cf6;" id="overlap-display">100</div>
+                <div style="font-size:0.72em;color:var(--text-dim);">overlap (20%)</div>
+            </div>
+        </div>
+        <!-- 文本切分可视化 -->
+        <div id="chunk-text-display" style="text-align:left;font-size:0.8em;line-height:2.2;padding:10px 12px;background:rgba(37,99,235,0.03);border:1px solid rgba(37,99,235,0.1);border-radius:10px;min-height:60px;"></div>
+        <!-- 图例 -->
+        <div id="chunk-legend" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px;font-size:0.72em;"></div>
+        <div style="margin-top:6px;font-size:0.75em;color:var(--text-dim);">模拟文档总长 2000 字符 · overlap = chunk_size × 20% · <span style="background:repeating-linear-gradient(135deg,rgba(59,130,246,0.2),rgba(59,130,246,0.2) 2px,rgba(139,92,246,0.2) 2px,rgba(139,92,246,0.2) 4px);padding:1px 6px;border-radius:3px;">斜纹</span> = 重叠部分</div>
+    </div>
+    <p style="margin-top:8px;font-size:0.78em;color:var(--text-dim);">切太大→引入无关信息；切太小→语义割裂。推荐从 500 tokens 开始实验</p>
+</div>

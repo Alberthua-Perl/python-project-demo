@@ -1,0 +1,25 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第二章 · 2.3</span></div>
+    <h2 class="page-title animate-ready delay-1">第一代：Naive RAG</h2>
+    <p class="page-subtitle animate-ready delay-2">简单直接——实现容易，但检索质量不稳定</p>
+    <div class="card-grid cols-3 animate-ready delay-3" style="max-width:1000px;">
+        <div class="card" style="text-align:left;">
+            <div style="font-size:1.5em;margin-bottom:10px;">⚙️</div>
+            <div style="font-size:1em;font-weight:bold;color:#3b82f6;margin-bottom:8px;">核心流程</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.7;">切块 → 向量化 → 存库 → 检索 Top-K → 拼进 Prompt → LLM 生成。全程无任何优化环节。</div>
+        </div>
+        <div class="card" style="text-align:left;">
+            <div style="font-size:1.5em;margin-bottom:10px;">✅</div>
+            <div style="font-size:1em;font-weight:bold;color:#4ade80;margin-bottom:8px;">优点</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.7;">实现简单，代码量少。适合快速验证 RAG 可行性，原型开发首选。</div>
+        </div>
+        <div class="card" style="text-align:left;">
+            <div style="font-size:1.5em;margin-bottom:10px;">❌</div>
+            <div style="font-size:1em;font-weight:bold;color:#ef4444;margin-bottom:8px;">局限</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.7;">检索质量不稳定，可能检索到不相关内容。切分策略粗糙，语义割裂。无结果排序和过滤。</div>
+        </div>
+    </div>
+    <div class="animate-ready delay-4" style="margin-top:16px;padding:12px 24px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:10px;max-width:700px;font-size:0.85em;color:var(--text-secondary);">
+        代表框架：LangChain 基础链 · 适用场景：原型验证、简单问答
+    </div>
+</div>

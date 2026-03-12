@@ -1,0 +1,25 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第二章 · 2.3</span></div>
+    <h2 class="page-title animate-ready delay-1">第二代：Advanced RAG</h2>
+    <p class="page-subtitle animate-ready delay-2">在检索前后引入优化环节——当前生产系统的主流选择</p>
+    <div class="card-grid cols-3 animate-ready delay-3" style="max-width:1000px;">
+        <div class="card" style="text-align:left;border-color:rgba(59,130,246,0.3);">
+            <div style="font-size:1.5em;margin-bottom:10px;">🔍</div>
+            <div style="font-size:1em;font-weight:bold;color:#3b82f6;margin-bottom:8px;">Pre-Retrieval（检索前）</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.7;">对用户查询进行改写、扩展或分解，提升检索命中率。用户问题模糊时效果显著。</div>
+        </div>
+        <div class="card" style="text-align:left;border-color:rgba(139,92,246,0.3);">
+            <div style="font-size:1.5em;margin-bottom:10px;">🔀</div>
+            <div style="font-size:1em;font-weight:bold;color:#8b5cf6;margin-bottom:8px;">Post-Retrieval（检索后）</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.7;">Reranker 重排序 + 过滤 + 压缩，确保送入 LLM 的内容高度相关，减少噪声干扰。</div>
+        </div>
+        <div class="card" style="text-align:left;border-color:rgba(6,182,212,0.3);">
+            <div style="font-size:1.5em;margin-bottom:10px;">⚡</div>
+            <div style="font-size:1em;font-weight:bold;color:#06b6d4;margin-bottom:8px;">混合检索</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.7;">向量检索 + BM25 关键词检索双路并行，通过 RRF 融合，显著提升召回率和准确率。</div>
+        </div>
+    </div>
+    <div class="animate-ready delay-4" style="margin-top:16px;padding:12px 24px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);border-radius:10px;max-width:700px;font-size:0.85em;color:var(--text-secondary);">
+        代表框架：LangChain + Reranker · 适用场景：生产环境、企业应用
+    </div>
+</div>

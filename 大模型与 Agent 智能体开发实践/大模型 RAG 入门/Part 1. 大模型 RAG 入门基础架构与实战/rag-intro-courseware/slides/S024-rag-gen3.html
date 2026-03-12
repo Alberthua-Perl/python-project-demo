@@ -1,0 +1,25 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第二章 · 2.3</span></div>
+    <h2 class="page-title animate-ready delay-1">第三代：Modular RAG</h2>
+    <p class="page-subtitle animate-ready delay-2">可插拔模块化架构——灵活强大，但复杂度更高</p>
+    <div class="card-grid cols-3 animate-ready delay-3" style="max-width:1000px;">
+        <div class="card" style="text-align:left;border-color:rgba(59,130,246,0.3);">
+            <div style="font-size:1.5em;margin-bottom:10px;">🧩</div>
+            <div style="font-size:1em;font-weight:bold;color:#3b82f6;margin-bottom:8px;">模块化设计</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.7;">检索、路由、重排、生成等模块可自由组合替换，每个模块独立升级，互不影响。</div>
+        </div>
+        <div class="card" style="text-align:left;border-color:rgba(139,92,246,0.3);">
+            <div style="font-size:1.5em;margin-bottom:10px;">🤖</div>
+            <div style="font-size:1em;font-weight:bold;color:#8b5cf6;margin-bottom:8px;">自适应检索</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.7;">模型先判断是否需要外部知识，再决定是否触发检索。不是每个问题都需要检索。</div>
+        </div>
+        <div class="card" style="text-align:left;border-color:rgba(6,182,212,0.3);">
+            <div style="font-size:1.5em;margin-bottom:10px;">🛠️</div>
+            <div style="font-size:1em;font-weight:bold;color:#06b6d4;margin-bottom:8px;">代表框架</div>
+            <div style="font-size:0.85em;color:var(--text-secondary);line-height:1.7;">LlamaIndex Workflows（事件驱动）· Haystack 2.0（Pipeline 架构）· DSPy（自动优化 Prompt）</div>
+        </div>
+    </div>
+    <div class="animate-ready delay-4" style="margin-top:16px;padding:12px 24px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);border-radius:10px;max-width:700px;font-size:0.85em;color:var(--text-secondary);">
+        选型建议：新手从 Naive RAG 入手 → 上线时引入 Advanced RAG → 深度定制需求再考虑 Modular RAG
+    </div>
+</div>

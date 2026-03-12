@@ -1,0 +1,39 @@
+<div class="slide" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="margin-bottom:8px;"><span class="badge">第三章 · 3.7</span></div>
+    <h2 class="page-title animate-ready delay-1">Top-K 检索：向量化→检索→过滤→排序</h2>
+    <p class="page-subtitle animate-ready delay-2">四步完成从用户问题到相关片段的完整检索链路</p>
+    <div class="card-grid cols-4 animate-ready delay-3" style="max-width:1000px;">
+        <div class="card" style="text-align:center;border-color:rgba(59,130,246,0.3);padding:20px;">
+            <div style="font-size:1.8em;margin-bottom:10px;">🔢</div>
+            <div style="font-size:0.9em;font-weight:bold;color:#3b82f6;margin-bottom:8px;">Step 1</div>
+            <div style="font-size:0.85em;font-weight:600;margin-bottom:6px;">查询向量化</div>
+            <div style="font-size:0.78em;color:var(--text-secondary);line-height:1.5;">用同一 Embedding 模型将问题转为向量，并做 normalize_L2</div>
+        </div>
+        <div class="card" style="text-align:center;border-color:rgba(139,92,246,0.3);padding:20px;">
+            <div style="font-size:1.8em;margin-bottom:10px;">🗄️</div>
+            <div style="font-size:0.9em;font-weight:bold;color:#8b5cf6;margin-bottom:8px;">Step 2</div>
+            <div style="font-size:0.85em;font-weight:600;margin-bottom:6px;">FAISS 检索</div>
+            <div style="font-size:0.78em;color:var(--text-secondary);line-height:1.5;">index.search() 返回 Top-K 的 scores 和 indices 数组</div>
+        </div>
+        <div class="card" style="text-align:center;border-color:rgba(6,182,212,0.3);padding:20px;">
+            <div style="font-size:1.8em;margin-bottom:10px;">🔽</div>
+            <div style="font-size:0.9em;font-weight:bold;color:#06b6d4;margin-bottom:8px;">Step 3</div>
+            <div style="font-size:0.85em;font-weight:600;margin-bottom:6px;">相似度过滤</div>
+            <div style="font-size:0.78em;color:var(--text-secondary);line-height:1.5;">过滤 idx==-1（无效位置）和 score &lt; threshold 的结果</div>
+        </div>
+        <div class="card" style="text-align:center;border-color:rgba(251,146,60,0.3);padding:20px;">
+            <div style="font-size:1.8em;margin-bottom:10px;">📊</div>
+            <div style="font-size:0.9em;font-weight:bold;color:#fb923c;margin-bottom:8px;">Step 4</div>
+            <div style="font-size:0.85em;font-weight:600;margin-bottom:6px;">排序输出</div>
+            <div style="font-size:0.78em;color:var(--text-secondary);line-height:1.5;">按相似度降序排列，附带 content + metadata + score</div>
+        </div>
+    </div>
+    <div class="animate-ready delay-4" style="margin-top:16px;display:flex;gap:14px;max-width:900px;width:100%;">
+        <div style="flex:1;padding:10px 16px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:10px;font-size:0.82em;color:var(--text-secondary);">
+            threshold=0.5 是宽松阈值，适合教学演示。生产环境中文场景推荐 0.6~0.75
+        </div>
+        <div style="flex:1;padding:10px 16px;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.2);border-radius:10px;font-size:0.82em;color:var(--text-secondary);">
+            ⚠️ 检索结果全部不相关？优先检查 Embedding 模型是否与建索引时一致
+        </div>
+    </div>
+</div>
