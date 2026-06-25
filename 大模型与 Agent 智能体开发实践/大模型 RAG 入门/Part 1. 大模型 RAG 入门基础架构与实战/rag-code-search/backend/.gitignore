@@ -1,5 +1,0 @@
-__pycache__/
-*.pyc
-.env
-data/chroma/
-data/*.json
